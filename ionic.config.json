@@ -1,0 +1,7 @@
+{
+  "name": "quizzen-web-app-web-v3",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "react-vite"
+}
