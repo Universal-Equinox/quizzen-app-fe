@@ -2,6 +2,7 @@ import { Route } from "react-router-dom";
 import {
   IonApp,
   IonIcon,
+  IonNav,
   IonRouterOutlet,
   IonTabBar,
   IonTabButton,
@@ -32,6 +33,7 @@ import "@ionic/react/css/display.css";
 /* Theme variables */
 import "./theme/variables.css";
 import Login from "./pages/Login";
+import PostDetail from "./pages/PostDetail";
 
 setupIonicReact();
 
@@ -41,11 +43,12 @@ const App: React.FC = () => (
       <IonTabs>
         <IonRouterOutlet>
           <Route exact path="/">
-            <Feed />
+            <IonNav root={() => <Feed />}></IonNav>
           </Route>
           <Route path="/login">
             <Login />
           </Route>
+
         </IonRouterOutlet>
         <IonTabBar slot="bottom">
           <IonTabButton tab="feed" href="/">

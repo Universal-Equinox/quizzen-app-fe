@@ -1,4 +1,5 @@
 import {
+  IonAvatar,
   IonButton,
   IonCard,
   IonCardContent,
@@ -12,43 +13,68 @@ import {
   IonImg,
   IonItem,
   IonLabel,
+  IonNavLink,
   IonRow,
+  IonText,
 } from "@ionic/react";
 import { chatbubbleOutline, heart, heartOutline } from "ionicons/icons";
 import React from "react";
+import { Post } from "../types/post";
+import PostDetail from "../pages/PostDetail";
 
-const PostCard: React.FC = () => {
+type PostCardProps = {
+  post: Post;
+};
+
+const PostCard: React.FC<PostCardProps> = ({ post }) => {
   return (
-    <IonCard href="/postDetail">
+    <IonCard>
       <IonCardHeader>
-        <IonCardSubtitle>username ,date</IonCardSubtitle>
-        <IonCardTitle>Card Title</IonCardTitle>
+        <IonItem>
+          <IonAvatar slot="start">
+            <img alt={post.user.id} src={post.user.profileImg} />
+          </IonAvatar>
+          <IonLabel>{post.user.userName}</IonLabel>
+          <IonText>{new Date(post.createdDate).toLocaleTimeString()}</IonText>
+        </IonItem>
+
+        <IonNavLink
+          routerDirection="forward"
+          component={() => <PostDetail post={post} />}
+        >
+          <IonCardTitle>{post.title}</IonCardTitle>
+        </IonNavLink>
       </IonCardHeader>
+      <IonNavLink
+        routerDirection="forward"
+        component={() => <PostDetail post={post} />}
+      >
+        <IonGrid>
+          <IonRow>
+            {post.images?.map((img) => (
+              <IonImg key={img.url} src={img.url}></IonImg>
+            ))}
+          </IonRow>
+        </IonGrid>
+        <IonCardContent onClick={() => console.log("nav")}>
+          {post.description.length > 200 ? (
+            <>
+              {post.description.slice(0, 100)}
+              <a>
+                <strong> ...devamını oku</strong>
+              </a>
+            </>
+          ) : (
+            post.description
+          )}
+        </IonCardContent>
+      </IonNavLink>
+
       <IonGrid>
         <IonRow>
-          <IonCol>
-            <IonImg
-              src="https://docs-demo.ionic.io/assets/madison.jpg"
-              alt="The Wisconsin State Capitol building in Madison, WI at night"
-            ></IonImg>
-          </IonCol>
-          <IonCol>
-            <IonImg
-              src="https://docs-demo.ionic.io/assets/madison.jpg"
-              alt="The Wisconsin State Capitol building in Madison, WI at night"
-            ></IonImg>
-          </IonCol>
-        </IonRow>
-      </IonGrid>
-      <IonCardContent>
-        Here's a small text description for the card content. Nothing more,
-        nothing less.
-      </IonCardContent>
-      <IonGrid>
-        <IonRow>
-          <IonChip color="warning">#sınav</IonChip>
-          <IonChip color="tertiary">#ders</IonChip>
-          <IonChip color="secondary">#konu</IonChip>
+          <IonChip color="warning">#{post.tags.exam}</IonChip>
+          <IonChip color="tertiary">#{post.tags.subject}</IonChip>
+          <IonChip color="secondary">#{post.tags.topic}</IonChip>
         </IonRow>
         <IonRow>
           <IonCol>
