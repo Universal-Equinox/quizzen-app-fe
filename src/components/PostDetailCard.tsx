@@ -47,38 +47,50 @@ const PostDetailCard: React.FC = () => {
       <IonCardHeader>
         <IonItem>
           <IonAvatar slot="start">
-            <img alt="text" src="imgId" />
+            <img
+              alt="imgalt"
+              src="https://i.pinimg.com/originals/32/82/21/328221397f7d20f615f9ee8cb48e4577.jpg"
+            />
           </IonAvatar>
-          <IonLabel>userName</IonLabel>
+          <IonLabel>username_1</IonLabel>
           {/* <IonText>{new Date(post.createdDate).toLocaleTimeString()}</IonText> */}
-          <IonText>date time</IonText>
+          <IonText>4:04 PM</IonText>
         </IonItem>
 
+        
+          {/* TODO: title özelliği kaldırılacak */}
+          <IonCardTitle>Lorem ipsum dolor sit amet</IonCardTitle>
+        
+      </IonCardHeader>
+      
+        <IonGrid>
+          <IonRow>
+            <IonImg src="https://www.matematikkolay.net/wp-content/uploads/2020/01/polinom_s4.gif"></IonImg>
+            <IonImg src="https://www.matematikkolay.net/wp-content/uploads/2020/01/polinom_s1.gif"></IonImg>
+          </IonRow>
+        </IonGrid>
+        <IonCardContent onClick={() => console.log("nav")}>
+          {/* {post.description.length > 200 ? (
+            <>
+              {post.description.slice(0, 100)}
+              <a>
+                <strong> ...devamını oku</strong>
+              </a>
+            </>
+          ) : (
+            post.description
+          )} */}
+          Lorem ipslor sit amet. doum dolLorem ipslor sit amet.or rem ipsumsit
+          amet, Lo
+        </IonCardContent>
+      
+
+      <IonGrid>
         <IonRow>
           <IonChip color="warning">#KPSS</IonChip>
-          <IonChip color="tertiary">#mat-1</IonChip>
+          <IonChip color="tertiary">#mat</IonChip>
           <IonChip color="secondary">#polinomlar</IonChip>
         </IonRow>
-
-        <IonCardTitle>title</IonCardTitle>
-      </IonCardHeader>
-      <IonGrid>
-        <IonRow>
-         
-            <IonImg
-              id="open-modal"
-              // key={index}
-              src="imgurl"
-              onClick={() => handleImageClick("img.url")}
-              style={{ cursor: "pointer" }}
-            />
-         
-        </IonRow>
-      </IonGrid>
-      <IonCardContent onClick={() => console.log("nav")}>
-        post desc
-      </IonCardContent>
-      <IonGrid>
         <IonRow>
           <IonCol>
             <IonIcon
@@ -87,37 +99,14 @@ const PostDetailCard: React.FC = () => {
               icon={heart}
               onClick={() => console.log("like")}
             />
+            <IonIcon
+              size="large"
+              icon={chatbubbleOutline}
+              onClick={() => console.log("like")}
+            />
           </IonCol>
         </IonRow>
       </IonGrid>
-
-      <IonModal
-        ref={modal}
-        isOpen={!!selectedImage}
-        onDidDismiss={handleCloseModal}
-        showBackdrop={true}
-      >
-        <IonContent>
-          {selectedImage && (
-            <div
-              style={{
-                position: "fixed",
-                top: 0,
-                left: 0,
-                right: 0,
-                bottom: 0,
-                backgroundColor: "rgba(0, 0, 0, 0.1)",
-                display: "flex",
-                justifyContent: "center",
-                alignItems: "center",
-              }}
-              onClick={handleCloseModal}
-            >
-              <img src={selectedImage} alt="Selected" />
-            </div>
-          )}
-        </IonContent>
-      </IonModal>
     </IonCard>
   );
 };
