@@ -30,7 +30,7 @@ type PostCardProps = {
   post: Post;
 };
 
-const PostDetailCard: React.FC<PostCardProps> = ({ post }) => {
+const PostDetailCard: React.FC = () => {
   const [selectedImage, setSelectedImage] = useState<string | null>(null);
   const modal = useRef<HTMLIonModalElement>(null);
 
@@ -47,35 +47,36 @@ const PostDetailCard: React.FC<PostCardProps> = ({ post }) => {
       <IonCardHeader>
         <IonItem>
           <IonAvatar slot="start">
-            <img alt={post.user.id} src={post.user.profileImg} />
+            <img alt="text" src="imgId" />
           </IonAvatar>
-          <IonLabel>{post.user.userName}</IonLabel>
-          <IonText>{new Date(post.createdDate).toLocaleTimeString()}</IonText>
+          <IonLabel>userName</IonLabel>
+          {/* <IonText>{new Date(post.createdDate).toLocaleTimeString()}</IonText> */}
+          <IonText>date time</IonText>
         </IonItem>
 
         <IonRow>
-          <IonChip color="warning">#{post.tags.exam}</IonChip>
-          <IonChip color="tertiary">#{post.tags.subject}</IonChip>
-          <IonChip color="secondary">#{post.tags.topic}</IonChip>
+          <IonChip color="warning">#KPSS</IonChip>
+          <IonChip color="tertiary">#mat-1</IonChip>
+          <IonChip color="secondary">#polinomlar</IonChip>
         </IonRow>
 
-        <IonCardTitle>{post.title}</IonCardTitle>
+        <IonCardTitle>title</IonCardTitle>
       </IonCardHeader>
       <IonGrid>
         <IonRow>
-          {post.images?.map((img, index) => (
+         
             <IonImg
               id="open-modal"
-              key={index}
-              src={img.url}
-              onClick={() => handleImageClick(img.url)}
+              // key={index}
+              src="imgurl"
+              onClick={() => handleImageClick("img.url")}
               style={{ cursor: "pointer" }}
             />
-          ))}
+         
         </IonRow>
       </IonGrid>
       <IonCardContent onClick={() => console.log("nav")}>
-        {post.description}
+        post desc
       </IonCardContent>
       <IonGrid>
         <IonRow>

@@ -5,8 +5,8 @@ type AnswerCardProps = {
   answer: Answer;
 };
 
-const AnswerCard: React.FC<AnswerCardProps> = ({ answer }) => {
-  return <>{answer.text}</>;
+const AnswerCard: React.FC = () => {
+  return <>answer.text</>;
 };
 
 export default AnswerCard;

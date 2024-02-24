@@ -26,38 +26,39 @@ type PostCardProps = {
   post: Post;
 };
 
-const PostCard: React.FC<PostCardProps> = ({ post }) => {
+const PostCard: React.FC = () => {
   return (
     <IonCard>
       <IonCardHeader>
         <IonItem>
           <IonAvatar slot="start">
-            <img alt={post.user.id} src={post.user.profileImg} />
+            <img alt="imgalt" src="imgurl" />
           </IonAvatar>
-          <IonLabel>{post.user.userName}</IonLabel>
-          <IonText>{new Date(post.createdDate).toLocaleTimeString()}</IonText>
+          <IonLabel>"username"</IonLabel>
+          {/* <IonText>{new Date(post.createdDate).toLocaleTimeString()}</IonText> */}
+          <IonText>date time</IonText>
         </IonItem>
 
         <IonNavLink
           routerDirection="forward"
-          component={() => <PostDetail post={post} />}
+          component={() => <PostDetail />}
         >
-          <IonCardTitle>{post.title}</IonCardTitle>
+          <IonCardTitle>tilte</IonCardTitle>
         </IonNavLink>
       </IonCardHeader>
       <IonNavLink
         routerDirection="forward"
-        component={() => <PostDetail post={post} />}
+        component={() => <PostDetail />}
       >
         <IonGrid>
           <IonRow>
-            {post.images?.map((img) => (
-              <IonImg key={img.url} src={img.url}></IonImg>
-            ))}
+            
+              <IonImg  src="imgurl"></IonImg>
+            
           </IonRow>
         </IonGrid>
         <IonCardContent onClick={() => console.log("nav")}>
-          {post.description.length > 200 ? (
+          {/* {post.description.length > 200 ? (
             <>
               {post.description.slice(0, 100)}
               <a>
@@ -66,15 +67,17 @@ const PostCard: React.FC<PostCardProps> = ({ post }) => {
             </>
           ) : (
             post.description
-          )}
+          )} */}
+
+          desc
         </IonCardContent>
       </IonNavLink>
 
       <IonGrid>
         <IonRow>
-          <IonChip color="warning">#{post.tags.exam}</IonChip>
-          <IonChip color="tertiary">#{post.tags.subject}</IonChip>
-          <IonChip color="secondary">#{post.tags.topic}</IonChip>
+          <IonChip color="warning">#KPSS</IonChip>
+          <IonChip color="tertiary">#mat</IonChip>
+          <IonChip color="secondary">#polinomlar</IonChip>
         </IonRow>
         <IonRow>
           <IonCol>
