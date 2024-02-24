@@ -32,29 +32,26 @@ const PostCard: React.FC = () => {
       <IonCardHeader>
         <IonItem>
           <IonAvatar slot="start">
-            <img alt="imgalt" src="imgurl" />
+            <img
+              alt="imgalt"
+              src="https://i.pinimg.com/originals/32/82/21/328221397f7d20f615f9ee8cb48e4577.jpg"
+            />
           </IonAvatar>
-          <IonLabel>"username"</IonLabel>
+          <IonLabel>username_1</IonLabel>
           {/* <IonText>{new Date(post.createdDate).toLocaleTimeString()}</IonText> */}
-          <IonText>date time</IonText>
+          <IonText>4:04 PM</IonText>
         </IonItem>
 
-        <IonNavLink
-          routerDirection="forward"
-          component={() => <PostDetail />}
-        >
-          <IonCardTitle>tilte</IonCardTitle>
+        <IonNavLink routerDirection="forward" component={() => <PostDetail />}>
+          {/* TODO: title özelliği kaldırılacak */}
+          <IonCardTitle>Lorem ipsum dolor sit amet</IonCardTitle>
         </IonNavLink>
       </IonCardHeader>
-      <IonNavLink
-        routerDirection="forward"
-        component={() => <PostDetail />}
-      >
+      <IonNavLink routerDirection="forward" component={() => <PostDetail />}>
         <IonGrid>
           <IonRow>
-            
-              <IonImg  src="imgurl"></IonImg>
-            
+            <IonImg src="https://www.matematikkolay.net/wp-content/uploads/2020/01/polinom_s4.gif"></IonImg>
+            <IonImg src="https://www.matematikkolay.net/wp-content/uploads/2020/01/polinom_s1.gif"></IonImg>
           </IonRow>
         </IonGrid>
         <IonCardContent onClick={() => console.log("nav")}>
@@ -68,8 +65,8 @@ const PostCard: React.FC = () => {
           ) : (
             post.description
           )} */}
-
-          desc
+          Lorem ipslor sit amet. doum dolLorem ipslor sit amet.or rem ipsumsit
+          amet, Lo
         </IonCardContent>
       </IonNavLink>
 

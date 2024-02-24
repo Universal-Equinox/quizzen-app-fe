@@ -35,6 +35,9 @@ const Feed: React.FC = () => {
               component={() => <PostDetail />}
             >
               <PostCard />
+              <PostCard />
+              <PostCard />
+              <PostCard />
             </IonNavLink>
           </IonList>
         ) : (
