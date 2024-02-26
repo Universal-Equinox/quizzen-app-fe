@@ -62,7 +62,8 @@ const App: React.FC = () => {
               <Route exact path="/login">
                 <Login />
               </Route>
-              <Route exact path="/new">
+
+              <Route exact path="/AddQuestion">
                 <NewPost />
               </Route>
             </IonRouterOutlet>
@@ -70,7 +71,7 @@ const App: React.FC = () => {
               <IonTabButton tab="feed" href="/">
                 <IonIcon aria-hidden="true" size="large" icon={home} />
               </IonTabButton>
-              <IonTabButton tab="newPost" href="/new">
+              <IonTabButton tab="AddQuestion" href="/AddQuestion">
                 <IonIcon aria-hidden="true" size="large" icon={addCircle} />
               </IonTabButton>
               {/* <IonTabButton tab="login" onClick={() => setShowModal(true)}>

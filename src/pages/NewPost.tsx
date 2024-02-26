@@ -14,6 +14,7 @@ import {
   IonSpinner,
   IonButton,
   IonTextarea,
+  IonImg,
 } from "@ionic/react";
 
 import React, { useEffect, useState } from "react";
@@ -40,6 +41,23 @@ const NewPost: React.FC = () => {
   const formattedDate = `${currentDate.toLocaleDateString("tr-TR", {
     dateStyle: "medium",
   })} ${currentDate.toLocaleTimeString("tr-TR", { timeStyle: "short" })}`;
+  const [currentPhoto, setCurrentPhoto] = useState<string | undefined>(undefined);
+
+  const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const files = event.target.files;
+    if (files && files.length > 0) {
+      const file = files[0];
+      const reader = new FileReader();
+      reader.onloadend = () => {
+        const dataUrl = reader.result as string;
+        setCurrentPhoto(dataUrl);
+      };
+      reader.readAsDataURL(file);
+    }
+    else {
+      setCurrentPhoto(undefined);
+    }
+  };
 
   return (
     <IonPage>
@@ -62,7 +80,15 @@ const NewPost: React.FC = () => {
               }
             ></IonTextarea>
           </IonItem>
+          <IonItem>
+            <input type="file" accept="image/*" onChange={handleFileChange} />
+          </IonItem>
 
+          {currentPhoto && (
+            <IonItem>
+              <IonImg src={currentPhoto}></IonImg>
+            </IonItem>
+          )}
           <IonItem>
             <IonSelect
               label="Ders Seç"
