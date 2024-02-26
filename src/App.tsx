@@ -42,6 +42,7 @@ import QuizzenHeader from "./components/QuizzenHeader";
 import { useState } from "react";
 import LoginModal from "./components/LoginModal";
 import Login from "./pages/Login";
+import NewPost from "./pages/NewPost";
 
 setupIonicReact();
 
@@ -61,12 +62,15 @@ const App: React.FC = () => {
               <Route exact path="/login">
                 <Login />
               </Route>
+              <Route exact path="/new">
+                <NewPost />
+              </Route>
             </IonRouterOutlet>
             <IonTabBar slot="bottom">
               <IonTabButton tab="feed" href="/">
                 <IonIcon aria-hidden="true" size="large" icon={home} />
               </IonTabButton>
-              <IonTabButton tab="tab2" href="/tab2">
+              <IonTabButton tab="newPost" href="/new">
                 <IonIcon aria-hidden="true" size="large" icon={addCircle} />
               </IonTabButton>
               {/* <IonTabButton tab="login" onClick={() => setShowModal(true)}>

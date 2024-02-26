@@ -76,7 +76,7 @@ const SignupCard: React.FC = () => {
                
               </IonRow>
 
-              <IonButton expand="block">Onayla</IonButton>
+              <IonButton expand="block" href="/login">Onayla</IonButton>
             </IonCol>
           </IonGrid>
         </IonCardContent>
