@@ -1,28 +1,52 @@
 import {
+  InputChangeEventDetail,
   IonButton,
   IonCard,
   IonCardContent,
   IonCardHeader,
   IonCardTitle,
   IonCol,
-  IonDatetime,
-  IonDatetimeButton,
   IonGrid,
   IonInput,
-  IonItem,
-  IonList,
-  IonModal,
-  IonRouterLink,
   IonRow,
-  IonSelect,
-  IonSelectOption,
 } from "@ionic/react";
 import React, { useState } from "react";
 import SignupModal from "./SignupModal";
+import { userData } from "../types/user";
 
-const SignupCard: React.FC = () => {
+interface SignupCardProps {
+  onSignup: Function;
+}
+
+const SignupCard: React.FC<SignupCardProps> = ({ onSignup }) => {
   const [showSignupModal, setShowSignupModal] = useState(false);
   const [showDatetimModal, setshowDatetimModal] = useState(false);
+  const [userData, setUserData] = useState<userData>({
+    firstName: "",
+    lastName: "",
+    email: "",
+    password: "",
+    userName: "",
+    gender: 0,
+    examId: "",
+  });
+
+  const handleInputChange = (
+    event: CustomEvent<InputChangeEventDetail>,
+    field: keyof userData
+  ) => {
+    const value = (event.target as HTMLInputElement).value;
+    setUserData((prevData) => ({
+      ...prevData,
+      [field]: value,
+    }));
+  };
+
+  const handleSubmit = () => {
+    // Call signup function  with userData
+    console.log(userData);
+    onSignup(userData);
+  };
 
   return (
     <>
@@ -35,48 +59,74 @@ const SignupCard: React.FC = () => {
             <IonCol>
               <IonRow>
                 <IonInput
+                  name="firstName"
+                  value={userData.firstName}
+                  onIonChange={(e) => handleInputChange(e, "firstName")}
                   label="Adınız"
                   labelPlacement="floating"
                   fill="outline"
-                  placeholder="mail adresinizi girin"
+                  placeholder="Adınızı girin"
                 ></IonInput>
                 <IonInput
+                  name="lastName"
+                  value={userData.lastName}
+                  onIonChange={(e) => handleInputChange(e, "lastName")}
                   label="Soyadınız"
                   labelPlacement="floating"
                   fill="outline"
-                  placeholder="mail adresinizi girin"
+                  placeholder="Soyadınızı girin"
                 ></IonInput>
                 <IonInput
-                  label="Telefon"
-                  labelPlacement="floating"
-                  fill="outline"
-                  placeholder="mail adresinizi girin"
-                ></IonInput>
-                <IonInput
+                  name="email"
+                  value={userData.email}
+                  onIonChange={(e) => handleInputChange(e, "email")}
                   label="Email"
                   labelPlacement="floating"
                   fill="outline"
-                  placeholder="mail adresinizi girin"
+                  placeholder="Email adresinizi girin"
                 ></IonInput>
                 <IonInput
-                  label="Password"
+                  name="password"
+                  value={userData.password}
+                  onIonChange={(e) => handleInputChange(e, "password")}
+                  label="Şifre"
                   labelPlacement="floating"
                   fill="outline"
-                  placeholder="parolanızı girin"
+                  placeholder="Şifrenizi girin"
                   type="password"
                 ></IonInput>
                 <IonInput
-                  label="Password repeat"
+                  name="userName"
+                  value={userData.userName}
+                  onIonChange={(e) => handleInputChange(e, "userName")}
+                  label="Kullanıcı Adı"
                   labelPlacement="floating"
                   fill="outline"
-                  placeholder="parolanızı girin"
-                  type="password"
+                  placeholder="Kullanıcı adınızı girin"
                 ></IonInput>
-
-               
+                <IonInput
+                  name="gender"
+                  value={userData.gender.toString()}
+                  onIonChange={(e) => handleInputChange(e, "gender")}
+                  label="Cinsiyet"
+                  labelPlacement="floating"
+                  fill="outline"
+                  placeholder="Cinsiyetinizi girin"
+                  type="number"
+                ></IonInput>
+                <IonInput
+                  name="examId"
+                  value={userData.examId.toString()}
+                  onIonChange={(e) => handleInputChange(e, "examId")}
+                  label="Sınav ID"
+                  labelPlacement="floating"
+                  fill="outline"
+                  placeholder="Sınav ID'nizi girin"
+                ></IonInput>
               </IonRow>
-
-              <IonButton expand="block" href="/login">Onayla</IonButton>
+              <IonButton expand="block" onClick={handleSubmit}>
+                Onayla
+              </IonButton>
             </IonCol>
           </IonGrid>
         </IonCardContent>
@@ -85,7 +135,6 @@ const SignupCard: React.FC = () => {
         isOpen={showSignupModal}
         onClose={() => setShowSignupModal(false)}
       />
-     
     </>
   );
 };

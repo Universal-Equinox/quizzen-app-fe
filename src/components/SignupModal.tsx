@@ -11,6 +11,10 @@ import {
 } from "@ionic/react";
 import LoginCard from "./LoginCard";
 import SignupCard from "./SignupCard";
+import { useAppDispatch } from "../app/hooks";
+import { useRegisterMutation } from "../feature/auth/authApiSlice";
+import { userData } from "../types/user";
+import { UseDispatch } from "react-redux";
 
 interface ModalProps {
   isOpen: boolean;
@@ -18,6 +22,13 @@ interface ModalProps {
 }
 
 const SignupModal: React.FC<ModalProps> = ({ isOpen, onClose }) => {
+  const dispatch = useAppDispatch();
+  const [register, { isLoading, error }] = useRegisterMutation();
+
+  const handleSignup = (userData: userData) => {
+    console.log("handleSignup: ", userData);
+    register(userData);
+  };
   return (
     <IonModal isOpen={isOpen} onDidDismiss={onClose}>
       <IonHeader>
@@ -28,7 +39,7 @@ const SignupModal: React.FC<ModalProps> = ({ isOpen, onClose }) => {
         </IonToolbar>
       </IonHeader>
       <IonContent className="ion-padding">
-        <SignupCard />
+        <SignupCard onSignup={handleSignup} />
       </IonContent>
     </IonModal>
   );
