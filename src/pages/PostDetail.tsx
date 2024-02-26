@@ -25,19 +25,15 @@ type PostCardProps = {
   post: Post;
 };
 
-const PostDetail: React.FC = () => {
-  // const { currentPostAnswers, loading } = useAppSelector(
-  //   (state) => state.post
-  // );
+const PostDetail: React.FC<PostCardProps> = ({ post }) => {
+  const { currentPostAnswers, loading } = useAppSelector((state) => state.post);
   const { postId } = useParams<RouteParams>();
 
-  const [loading, setLoading] = useState(false);
-
-  // const dispatch = useAppDispatch();
-  // useEffect(() => {
-  //   dispatch(getPostById(post.id));
-  //   dispatch(getAnswersByPostId(post.id));
-  // }, [dispatch, postId, post]);
+  const dispatch = useAppDispatch();
+  useEffect(() => {
+    dispatch(getPostById(post.id));
+    dispatch(getAnswersByPostId(post.id));
+  }, [dispatch, postId, post]);
 
   return (
     <>
@@ -50,13 +46,14 @@ const PostDetail: React.FC = () => {
         </IonToolbar>
       </IonHeader>
       <IonContent fullscreen>
-        <PostDetailCard />
+        <PostDetailCard post={post} />
 
         <IonList>
-          <AnswerCard
-
-          />
-
+          {loading ? (
+            <IonSpinner name="lines"></IonSpinner>
+          ) : currentPostAnswers ? (
+            currentPostAnswers.map((ans) => <AnswerCard answer={ans} />)
+          ) : null}
         </IonList>
       </IonContent>
     </>

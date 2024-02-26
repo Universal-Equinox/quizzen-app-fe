@@ -12,13 +12,21 @@ import React, { useEffect, useState } from "react";
 import PostCard from "../components/PostCard";
 import PostDetail from "./PostDetail";
 import QuizzenHeader from "../components/QuizzenHeader";
+import { useAppDispatch, useAppSelector } from "../app/hooks";
+import { getPosts } from "../feature/post/postSlice";
 
 const Feed: React.FC = () => {
-  const [loading, setLoading] = useState(false);
   const currentDate = new Date(Date.now());
   const formattedDate = `${currentDate.toLocaleDateString("tr-TR", {
     dateStyle: "medium",
   })} ${currentDate.toLocaleTimeString("tr-TR", { timeStyle: "short" })}`;
+
+  const dispatch = useAppDispatch();
+  const { posts, loading } = useAppSelector((state) => state.post);
+
+  useEffect(() => {
+    dispatch(getPosts());
+  }, [dispatch]);
 
   return (
     <IonPage>
@@ -26,15 +34,14 @@ const Feed: React.FC = () => {
       <IonContent fullscreen>
         {!loading ? (
           <IonList>
-            <IonNavLink
-              routerDirection="forward"
-              component={() => <PostDetail />}
-            >
-              <PostCard />
-              <PostCard />
-              <PostCard />
-              <PostCard />
-            </IonNavLink>
+            {posts?.map((post) => (
+              <IonNavLink
+                routerDirection="forward"
+                component={() => <PostDetail post={post} />}
+              >
+                <PostCard key={post.id} post={post} />
+              </IonNavLink>
+            ))}
           </IonList>
         ) : (
           <IonSpinner name="lines"></IonSpinner>
