@@ -43,13 +43,13 @@ import { useState } from "react";
 import LoginModal from "./components/LoginModal";
 import Login from "./pages/Login";
 import NewPost from "./pages/NewPost";
-
+import Profile from "./pages/Profile";
 setupIonicReact();
 
 const App: React.FC = () => {
   const [showModal, setShowModal] = useState(false);
   const [showLoginPage, setshowLoginPage] = useState(false);
-  const [authenticated, setAuthenticated] = useState(false);
+  const [authenticated, setAuthenticated] = useState(true);
   return (
     <IonApp>
       <IonContent className="ion-padding">
@@ -66,6 +66,12 @@ const App: React.FC = () => {
               <Route exact path="/AddQuestion">
                 <NewPost />
               </Route>
+
+              <Route exact path="/Profile">
+                <Profile />
+              </Route>
+
+              
             </IonRouterOutlet>
             <IonTabBar slot="bottom">
               <IonTabButton tab="feed" href="/">
@@ -85,7 +91,7 @@ const App: React.FC = () => {
                     ? setshowLoginPage(false)
                     : setshowLoginPage(true)
                 }
-                href={authenticated ? "/profile" : "/login"}
+                href={authenticated ? "/Profile" : "/login"}
               >
                 <IonIcon aria-hidden="true" size="large" icon={person} />
               </IonTabButton>
