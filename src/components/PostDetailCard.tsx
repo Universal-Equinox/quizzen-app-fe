@@ -57,20 +57,20 @@ const PostDetailCard: React.FC = () => {
           <IonText>4:04 PM</IonText>
         </IonItem>
 
-        
-          {/* TODO: title özelliği kaldırılacak */}
-          <IonCardTitle>Lorem ipsum dolor sit amet</IonCardTitle>
-        
+
+        {/* TODO: title özelliği kaldırılacak */}
+        <IonCardTitle>Lorem ipsum dolor sit amet</IonCardTitle>
+
       </IonCardHeader>
-      
-        <IonGrid>
-          <IonRow>
-            <IonImg src="https://www.matematikkolay.net/wp-content/uploads/2020/01/polinom_s4.gif"></IonImg>
-            <IonImg src="https://www.matematikkolay.net/wp-content/uploads/2020/01/polinom_s1.gif"></IonImg>
-          </IonRow>
-        </IonGrid>
-        <IonCardContent onClick={() => console.log("nav")}>
-          {/* {post.description.length > 200 ? (
+
+      <IonGrid>
+        <IonRow>
+          <IonImg src="https://www.matematikkolay.net/wp-content/uploads/2020/01/polinom_s4.gif"></IonImg>
+          <IonImg src="https://www.matematikkolay.net/wp-content/uploads/2020/01/polinom_s1.gif"></IonImg>
+        </IonRow>
+      </IonGrid>
+      <IonCardContent onClick={() => console.log("nav")}>
+        {/* {post.description.length > 200 ? (
             <>
               {post.description.slice(0, 100)}
               <a>
@@ -80,10 +80,10 @@ const PostDetailCard: React.FC = () => {
           ) : (
             post.description
           )} */}
-          Lorem ipslor sit amet. doum dolLorem ipslor sit amet.or rem ipsumsit
-          amet, Lo
-        </IonCardContent>
-      
+        Lorem ipslor sit amet. doum dolLorem ipslor sit amet.or rem ipsumsit
+        amet, Lo
+      </IonCardContent>
+
 
       <IonGrid>
         <IonRow>

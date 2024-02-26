@@ -10,23 +10,17 @@ import {
 } from "@ionic/react";
 import React, { useEffect, useState } from "react";
 import PostCard from "../components/PostCard";
-import { getPosts } from "../feature/post/postSlice";
-import { useAppDispatch, useAppSelector } from "../app/hooks";
 import PostDetail from "./PostDetail";
 
 const Feed: React.FC = () => {
-  // const dispatch = useAppDispatch();
-  // const { posts, loading } = useAppSelector((state) => state.post);
 
   const [loading, setLoading] = useState(false);
-
-  // useEffect(() => {
-  //   dispatch(getPosts());
-  // }, [dispatch]);
+  const currentDate = new Date(Date.now());
+  const formattedDate = `${currentDate.toLocaleDateString('tr-TR', { dateStyle: 'medium' })} ${currentDate.toLocaleTimeString('tr-TR', { timeStyle: 'short' })}`;
+  
 
   return (
     <IonPage>
-      <IonHeader></IonHeader>
       <IonContent fullscreen>
         {!loading ? (
           <IonList>
@@ -34,10 +28,23 @@ const Feed: React.FC = () => {
               routerDirection="forward"
               component={() => <PostDetail />}
             >
-              <PostCard />
-              <PostCard />
-              <PostCard />
-              <PostCard />
+              <PostCard
+                userName="Sukrubeyy"
+                userImage="https://avatars.githubusercontent.com/u/69048292?v=4"
+                commentDate={formattedDate}
+                title="Soruyu çözemedim help"
+                questionImg={[
+                  "https://www.matematikkolay.net/wp-content/uploads/2020/01/polinom_s4.gif",
+                  "https://www.matematikkolay.net/wp-content/uploads/2020/01/polinom_s1.gif"
+                ]}
+                description="Çözemiyorum HELPPPPP, kök bulamıyorum. !!!"
+                tags={[
+                  "Kpss",
+                  "YKS"
+                ]}
+                heartCount={15}
+                likeCount={24}
+              />
             </IonNavLink>
           </IonList>
         ) : (

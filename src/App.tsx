@@ -1,6 +1,8 @@
 import { Route } from "react-router-dom";
 import {
   IonApp,
+  IonContent,
+  IonFooter,
   IonIcon,
   IonNav,
   IonRouterOutlet,
@@ -34,35 +36,39 @@ import "@ionic/react/css/display.css";
 import "./theme/variables.css";
 import Login from "./pages/Login";
 import PostDetail from "./pages/PostDetail";
+import QuizzenHeader from "./components/QuizzenHeader";
 
 setupIonicReact();
 
 const App: React.FC = () => (
   <IonApp>
-    <IonReactRouter>
-      <IonTabs>
-        <IonRouterOutlet>
-          <Route exact path="/">
-            <IonNav root={() => <Feed />}></IonNav>
-          </Route>
-          <Route path="/login">
-            <Login />
-          </Route>
+    <QuizzenHeader />
 
-        </IonRouterOutlet>
-        <IonTabBar slot="bottom">
-          <IonTabButton tab="feed" href="/">
-            <IonIcon aria-hidden="true" size="large" icon={home} />
-          </IonTabButton>
-          <IonTabButton tab="tab2" href="/tab2">
-            <IonIcon aria-hidden="true" size="large" icon={addCircle} />
-          </IonTabButton>
-          <IonTabButton tab="login" href="/login">
-            <IonIcon aria-hidden="true" size="large" icon={person} />
-          </IonTabButton>
-        </IonTabBar>
-      </IonTabs>
-    </IonReactRouter>
+    <IonContent className="ion-padding">
+      <IonReactRouter>
+        <IonTabs>
+          <IonRouterOutlet>
+            <Route exact path="/">
+              <IonNav root={() => <Feed />}></IonNav>
+            </Route>
+            <Route path="/login">
+              <Login />
+            </Route>
+          </IonRouterOutlet>
+          <IonTabBar slot="bottom">
+            <IonTabButton tab="feed" href="/">
+              <IonIcon aria-hidden="true" size="large" icon={home} />
+            </IonTabButton>
+            <IonTabButton tab="tab2" href="/tab2">
+              <IonIcon aria-hidden="true" size="large" icon={addCircle} />
+            </IonTabButton>
+            <IonTabButton tab="login" href="/login">
+              <IonIcon aria-hidden="true" size="large" icon={person} />
+            </IonTabButton>
+          </IonTabBar>
+        </IonTabs>
+      </IonReactRouter>
+    </IonContent>
   </IonApp>
 );
 
