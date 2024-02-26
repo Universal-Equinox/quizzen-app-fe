@@ -37,13 +37,12 @@ import "./theme/variables.css";
 import Login from "./pages/Login";
 import PostDetail from "./pages/PostDetail";
 import QuizzenHeader from "./components/QuizzenHeader";
+import AddQuestion from "./pages/AddQuestion";
 
 setupIonicReact();
 
 const App: React.FC = () => (
   <IonApp>
-    <QuizzenHeader />
-
     <IonContent className="ion-padding">
       <IonReactRouter>
         <IonTabs>
@@ -54,12 +53,16 @@ const App: React.FC = () => (
             <Route path="/login">
               <Login />
             </Route>
+
+            <Route path="/AddQuestion">
+              <AddQuestion />
+            </Route>
           </IonRouterOutlet>
           <IonTabBar slot="bottom">
             <IonTabButton tab="feed" href="/">
               <IonIcon aria-hidden="true" size="large" icon={home} />
             </IonTabButton>
-            <IonTabButton tab="tab2" href="/tab2">
+            <IonTabButton tab="AddQuestion" href="/AddQuestion">
               <IonIcon aria-hidden="true" size="large" icon={addCircle} />
             </IonTabButton>
             <IonTabButton tab="login" href="/login">

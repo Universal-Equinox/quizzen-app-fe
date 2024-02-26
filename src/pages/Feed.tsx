@@ -11,6 +11,7 @@ import {
 import React, { useEffect, useState } from "react";
 import PostCard from "../components/PostCard";
 import PostDetail from "./PostDetail";
+import QuizzenHeader from "../components/QuizzenHeader";
 
 const Feed: React.FC = () => {
   const [loading, setLoading] = useState(false);
@@ -21,6 +22,7 @@ const Feed: React.FC = () => {
 
   return (
     <IonPage>
+      <QuizzenHeader />
       <IonContent fullscreen>
         {!loading ? (
           <IonList>
@@ -48,5 +50,4 @@ const Feed: React.FC = () => {
     </IonPage>
   );
 };
-
 export default Feed;
