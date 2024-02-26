@@ -21,6 +21,9 @@ import {
   IonCardContent,
   IonText,
   IonChip,
+  IonItemGroup,
+  IonItemDivider,
+  IonImg,
 } from "@ionic/react";
 
 const Profile: React.FC = () => {
@@ -73,7 +76,7 @@ const Profile: React.FC = () => {
                 </IonCol>
                 <IonCol size="8">
                   <IonRow>
-                    <IonText>kullanıcı adı</IonText>
+                    <IonText>kullanıcı adı </IonText>
                   </IonRow>
 
                   <IonRow>
@@ -85,12 +88,33 @@ const Profile: React.FC = () => {
                   </IonRow>
                 </IonCol>
               </IonRow>
+              <IonButton expand="block">Profili düzenle</IonButton>
+              <IonRow></IonRow>
             </IonGrid>
           </IonCardContent>
         </IonCard>
+
+        {/* answer card list */}
+        <IonItemDivider>
+          <IonLabel>Gönderiler</IonLabel>
+        </IonItemDivider>
+
+        <IonList lines="inset">
+          <IonCard>
+            <IonGrid>
+              <IonCol size="6">
+                <IonCardTitle>This is users post</IonCardTitle>
+              </IonCol>
+              <IonCol size="2">
+                <img src="none" />
+              </IonCol>
+            </IonGrid>
+          </IonCard>
+        </IonList>
       </IonContent>
     </IonPage>
   );
+
 };
 
 export default Profile;
