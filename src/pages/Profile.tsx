@@ -114,6 +114,7 @@ const Profile: React.FC = () => {
       </IonContent>
     </IonPage>
   );
+
 };
 
 export default Profile;
