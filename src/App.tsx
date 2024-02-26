@@ -1,9 +1,11 @@
 import { Route } from "react-router-dom";
 import {
   IonApp,
+  IonButton,
   IonContent,
   IonFooter,
   IonIcon,
+  IonModal,
   IonNav,
   IonRouterOutlet,
   IonTabBar,
@@ -34,45 +36,63 @@ import "@ionic/react/css/display.css";
 
 /* Theme variables */
 import "./theme/variables.css";
-import Login from "./pages/Login";
 import PostDetail from "./pages/PostDetail";
 import QuizzenHeader from "./components/QuizzenHeader";
-import AddQuestion from "./pages/AddQuestion";
+
+import { useState } from "react";
+import LoginModal from "./components/LoginModal";
+import Login from "./pages/Login";
 
 setupIonicReact();
 
-const App: React.FC = () => (
-  <IonApp>
-    <IonContent className="ion-padding">
-      <IonReactRouter>
-        <IonTabs>
-          <IonRouterOutlet>
-            <Route exact path="/">
-              <IonNav root={() => <Feed />}></IonNav>
-            </Route>
-            <Route path="/login">
-              <Login />
-            </Route>
+const App: React.FC = () => {
+  const [showModal, setShowModal] = useState(false);
+  const [showLoginPage, setshowLoginPage] = useState(false);
+  const [authenticated, setAuthenticated] = useState(false);
+  return (
+    <IonApp>
+      <IonContent className="ion-padding">
+        <IonReactRouter>
+          <IonTabs>
+            <IonRouterOutlet>
+              <Route exact path="/">
+                <IonNav root={() => <Feed />}></IonNav>
+              </Route>
+              <Route exact path="/login">
+                <Login />
+              </Route>
+            </IonRouterOutlet>
+            <IonTabBar slot="bottom">
+              <IonTabButton tab="feed" href="/">
+                <IonIcon aria-hidden="true" size="large" icon={home} />
+              </IonTabButton>
+              <IonTabButton tab="tab2" href="/tab2">
+                <IonIcon aria-hidden="true" size="large" icon={addCircle} />
+              </IonTabButton>
+              {/* <IonTabButton tab="login" onClick={() => setShowModal(true)}>
+                <IonIcon aria-hidden="true" size="large" icon={person} />
+              </IonTabButton> */}
+              <IonTabButton
+                tab="login"
+                // TODO: burayı düzenle
+                onClick={() =>
+                  authenticated
+                    ? setshowLoginPage(false)
+                    : setshowLoginPage(true)
+                }
+                href={authenticated ? "/profile" : "/login"}
+              >
+                <IonIcon aria-hidden="true" size="large" icon={person} />
+              </IonTabButton>
+            </IonTabBar>
+          </IonTabs>
+        </IonReactRouter>
 
-            <Route path="/AddQuestion">
-              <AddQuestion />
-            </Route>
-          </IonRouterOutlet>
-          <IonTabBar slot="bottom">
-            <IonTabButton tab="feed" href="/">
-              <IonIcon aria-hidden="true" size="large" icon={home} />
-            </IonTabButton>
-            <IonTabButton tab="AddQuestion" href="/AddQuestion">
-              <IonIcon aria-hidden="true" size="large" icon={addCircle} />
-            </IonTabButton>
-            <IonTabButton tab="login" href="/login">
-              <IonIcon aria-hidden="true" size="large" icon={person} />
-            </IonTabButton>
-          </IonTabBar>
-        </IonTabs>
-      </IonReactRouter>
-    </IonContent>
-  </IonApp>
-);
+        {/* <LoginModal isOpen={showModal} onClose={() => setShowModal(false)} /> */}
+        {showLoginPage && <Login />}
+      </IonContent>
+    </IonApp>
+  );
+};
 
 export default App;
