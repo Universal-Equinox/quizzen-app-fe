@@ -57,33 +57,31 @@ const PostDetailCard: React.FC = () => {
           <IonText>4:04 PM</IonText>
         </IonItem>
 
-
         {/* TODO: title özelliği kaldırılacak */}
         <IonCardTitle>Lorem ipsum dolor sit amet</IonCardTitle>
-
       </IonCardHeader>
-
-      <IonGrid>
-        <IonRow>
-          <IonImg src="https://www.matematikkolay.net/wp-content/uploads/2020/01/polinom_s4.gif"></IonImg>
-          <IonImg src="https://www.matematikkolay.net/wp-content/uploads/2020/01/polinom_s1.gif"></IonImg>
-        </IonRow>
-      </IonGrid>
       <IonCardContent onClick={() => console.log("nav")}>
-        {/* {post.description.length > 200 ? (
-            <>
+        <IonGrid>
+          <IonRow>
+            <IonImg src="https://www.matematikkolay.net/wp-content/uploads/2020/01/polinom_s4.gif"></IonImg>
+            <IonImg src="https://www.matematikkolay.net/wp-content/uploads/2020/01/polinom_s1.gif"></IonImg>
+          </IonRow>
+        </IonGrid>
+        <IonRow>
+          {/* {post.description.length > 200 ? (
+          <>
               {post.description.slice(0, 100)}
               <a>
                 <strong> ...devamını oku</strong>
-              </a>
-            </>
-          ) : (
-            post.description
-          )} */}
-        Lorem ipslor sit amet. doum dolLorem ipslor sit amet.or rem ipsumsit
-        amet, Lo
+                </a>
+                </>
+                ) : (
+                  post.description
+                )} */}
+          Lorem ipslor sit amet. doum dolLorem ipslor sit amet.or rem ipsumsit
+          amet, Lo
+        </IonRow>
       </IonCardContent>
-
 
       <IonGrid>
         <IonRow>
@@ -92,18 +90,11 @@ const PostDetailCard: React.FC = () => {
           <IonChip color="secondary">#polinomlar</IonChip>
         </IonRow>
         <IonRow>
-          <IonCol>
-            <IonIcon
-              size="large"
-              color="danger"
-              icon={heart}
-              onClick={() => console.log("like")}
-            />
-            <IonIcon
-              size="large"
-              icon={chatbubbleOutline}
-              onClick={() => console.log("like")}
-            />
+          <IonCol size="1">
+            <IonButton fill="clear" color="danger">
+              <IonIcon icon={heart} />
+              <IonLabel>2</IonLabel>
+            </IonButton>
           </IonCol>
         </IonRow>
       </IonGrid>

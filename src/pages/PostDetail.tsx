@@ -54,12 +54,9 @@ const PostDetail: React.FC = () => {
 
         <IonList>
           <AnswerCard
-            userName="SukruBeyy"
-            title="Delta Kök Bulma Sorunu"
-            description="Bence hata senin delta formülünde. -b yerine +b kullan Wtf salladım."
-            heartCount={1}
-            likeCount={3}
+
           />
+
         </IonList>
       </IonContent>
     </>
