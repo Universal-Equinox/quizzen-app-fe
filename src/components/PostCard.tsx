@@ -27,67 +27,63 @@ type PostCardProps = {
   post: Post;
 };
 
-const PostCard: React.FC = () => {
+const PostCard: React.FC<PostCardProps> = ({ post }) => {
   return (
     <IonCard>
       <IonCardHeader>
         <IonItem>
           <IonAvatar slot="start">
-            <img
-              alt="imgalt"
-              src="https://i.pinimg.com/originals/32/82/21/328221397f7d20f615f9ee8cb48e4577.jpg"
-            />
+            <img alt="imgalt" src={post.user.profileImg} />
           </IonAvatar>
-          <IonLabel>username_1</IonLabel>
-          {/* <IonText>{new Date(post.createdDate).toLocaleTimeString()}</IonText> */}
-          <IonText>4:04 PM</IonText>
+          <IonLabel>{post.user.userName}</IonLabel>
+          <IonText>{new Date(post.createdDate).toLocaleTimeString()}</IonText>
+          {/* <IonText>4:04 PM</IonText> */}
         </IonItem>
 
-        <IonNavLink routerDirection="forward" component={() => <PostDetail />}>
+        <IonNavLink
+          routerDirection="forward"
+          component={() => <PostDetail post={post} />}
+        >
           {/* TODO: title özelliği kaldırılacak */}
-          <IonCardTitle>Lorem ipsum dolor sit amet</IonCardTitle>
+          <IonCardTitle>
+            {" "}
+            {post.description.length > 200 ? (
+              <>
+                {post.description.slice(0, 100)}
+                <a>
+                  <strong> ...devamını oku</strong>
+                </a>
+              </>
+            ) : (
+              post.description
+            )}
+          </IonCardTitle>
         </IonNavLink>
       </IonCardHeader>
-      <IonNavLink routerDirection="forward" component={() => <PostDetail />}>
+      <IonNavLink
+        routerDirection="forward"
+        component={() => <PostDetail post={post} />}
+      >
         <IonCardContent onClick={() => console.log("nav")}>
           <IonGrid>
             <IonRow>
-              <IonCol>
-                <IonImg
-                  className="ion-img"
-                  src="https://www.matematikkolay.net/wp-content/uploads/2020/01/polinom_s4.gif"
-                ></IonImg>
-              </IonCol>
-              <IonCol>
-                <IonImg
-                  style={{ objectFit: "cover" }}
-                  src="https://www.matematikkolay.net/wp-content/uploads/2020/01/polinom_s1.gif"
-                ></IonImg>
-              </IonCol>
+              {post.images &&
+                post.images.map((img) => (
+                  <IonCol>
+                    <IonImg className="ion-img" src={img.url}></IonImg>
+                  </IonCol>
+                ))}
             </IonRow>
-            <IonRow>
-              {/* {post.description.length > 200 ? (
-              <>
-              {post.description.slice(0, 100)}
-              <a>
-                <strong> ...devamını oku</strong>
-              </a>
-            </>
-          ) : (
-            post.description
-          )} */}
-              Lorem ipslor sit amet. doum dolLorem ipslor sit amet.or rem
-              ipsumsit amet, Lo
-            </IonRow>
+
           </IonGrid>
         </IonCardContent>
       </IonNavLink>
 
       <IonGrid>
         <IonRow>
-          <IonChip color="warning">#KPSS</IonChip>
-          <IonChip color="tertiary">#mat</IonChip>
-          <IonChip color="secondary">#polinomlar</IonChip>
+          <IonChip color="warning">#{post.tags.exam}</IonChip>
+          <IonChip color="tertiary">#{post.tags.subject}</IonChip>
+          <IonChip color="secondary">#{post.tags.topic}</IonChip>
         </IonRow>
         <IonRow>
           <IonCol size="1">
@@ -97,7 +93,7 @@ const PostCard: React.FC = () => {
             </IonButton>
           </IonCol>
           <IonCol size="1">
-            <IonButton fill="clear" >
+            <IonButton fill="clear">
               <IonIcon icon={chatbubbleOutline} />
               <IonLabel>2</IonLabel>
             </IonButton>

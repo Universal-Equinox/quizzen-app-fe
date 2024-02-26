@@ -30,7 +30,7 @@ type PostCardProps = {
   post: Post;
 };
 
-const PostDetailCard: React.FC = () => {
+const PostDetailCard: React.FC<PostCardProps> = ({ post }) => {
   const [selectedImage, setSelectedImage] = useState<string | null>(null);
   const modal = useRef<HTMLIonModalElement>(null);
 
@@ -52,42 +52,38 @@ const PostDetailCard: React.FC = () => {
               src="https://i.pinimg.com/originals/32/82/21/328221397f7d20f615f9ee8cb48e4577.jpg"
             />
           </IonAvatar>
-          <IonLabel>username_1</IonLabel>
-          {/* <IonText>{new Date(post.createdDate).toLocaleTimeString()}</IonText> */}
-          <IonText>4:04 PM</IonText>
+          <IonLabel>{post.user.userName}</IonLabel>
+          <IonText>{new Date(post.createdDate).toLocaleTimeString()}</IonText>
+          {/* <IonText>4:04 PM</IonText> */}
         </IonItem>
 
         {/* TODO: title özelliği kaldırılacak */}
-        <IonCardTitle>Lorem ipsum dolor sit amet</IonCardTitle>
+        <IonCardTitle>{post.title}</IonCardTitle>
       </IonCardHeader>
-      <IonCardContent onClick={() => console.log("nav")}>
+      <IonCardContent>
         <IonGrid>
           <IonRow>
-            <IonImg src="https://www.matematikkolay.net/wp-content/uploads/2020/01/polinom_s4.gif"></IonImg>
-            <IonImg src="https://www.matematikkolay.net/wp-content/uploads/2020/01/polinom_s1.gif"></IonImg>
+            {post.images?.map((img, index) => (
+              <IonImg
+                id="open-modal"
+                key={index}
+                src={img.url}
+                onClick={() => handleImageClick(img.url)}
+                style={{ cursor: "pointer" }}
+              />
+            ))}
           </IonRow>
         </IonGrid>
         <IonRow>
-          {/* {post.description.length > 200 ? (
-          <>
-              {post.description.slice(0, 100)}
-              <a>
-                <strong> ...devamını oku</strong>
-                </a>
-                </>
-                ) : (
-                  post.description
-                )} */}
-          Lorem ipslor sit amet. doum dolLorem ipslor sit amet.or rem ipsumsit
-          amet, Lo
+          {post.description}
         </IonRow>
       </IonCardContent>
 
       <IonGrid>
         <IonRow>
-          <IonChip color="warning">#KPSS</IonChip>
-          <IonChip color="tertiary">#mat</IonChip>
-          <IonChip color="secondary">#polinomlar</IonChip>
+          <IonChip color="warning">#{post.tags.exam}</IonChip>
+          <IonChip color="tertiary">#{post.tags.subject}</IonChip>
+          <IonChip color="secondary">#{post.tags.topic}</IonChip>
         </IonRow>
         <IonRow>
           <IonCol size="1">
