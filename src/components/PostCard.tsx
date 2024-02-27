@@ -69,7 +69,7 @@ const PostCard: React.FC<PostCardProps> = ({ post }) => {
             <IonRow>
               {post.images &&
                 post.images.map((img) => (
-                  <IonCol>
+                  <IonCol key={img.url}>
                     <IonImg className="ion-img" src={img.url}></IonImg>
                   </IonCol>
                 ))}

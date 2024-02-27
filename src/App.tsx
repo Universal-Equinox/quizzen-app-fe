@@ -1,11 +1,8 @@
-import { Route } from "react-router-dom";
+import { Route, useHistory } from "react-router-dom";
 import {
   IonApp,
-  IonButton,
   IonContent,
-  IonFooter,
   IonIcon,
-  IonModal,
   IonNav,
   IonRouterOutlet,
   IonTabBar,
@@ -36,20 +33,21 @@ import "@ionic/react/css/display.css";
 
 /* Theme variables */
 import "./theme/variables.css";
-import PostDetail from "./pages/PostDetail";
-import QuizzenHeader from "./components/QuizzenHeader";
 
-import { useState } from "react";
-import LoginModal from "./components/LoginModal";
-import Login from "./pages/Login";
-import NewPost from "./pages/NewPost";
+import { useEffect, useState } from "react";
 import Profile from "./pages/Profile";
+import Modal from "./components/Modal";
+import LoginCard from "./components/LoginCard";
+import NewPostCard from "./components/NewPostCard";
 setupIonicReact();
 
 const App: React.FC = () => {
-  const [showModal, setShowModal] = useState(false);
-  const [showLoginPage, setshowLoginPage] = useState(false);
-  const [authenticated, setAuthenticated] = useState(true);
+  const [showLoginModal, setShowLoginModal] = useState(false);
+  const [showNewPostModal, setShowNewPostModal] = useState(false);
+  const [authenticated, setAuthenticated] = useState(false);
+
+  const history = useHistory();
+
   return (
     <IonApp>
       <IonContent className="ion-padding">
@@ -57,41 +55,36 @@ const App: React.FC = () => {
           <IonTabs>
             <IonRouterOutlet>
               <Route exact path="/">
-                <IonNav root={() => <Feed />}></IonNav>
-              </Route>
-              <Route exact path="/login">
-                <Login />
-              </Route>
-
-              <Route exact path="/new-post">
-                <NewPost />
+                {/* IonNav sıkıntı çıkarıyor */}
+                {/* <IonNav root={() => <Feed />}></IonNav> */}
+                <Feed />
               </Route>
 
-              <Route exact path="/Profile">
+              <Route exact path="/profile">
                 <Profile />
               </Route>
-
-              
             </IonRouterOutlet>
+
             <IonTabBar slot="bottom">
+              {/* FEED */}
               <IonTabButton tab="feed" href="/">
                 <IonIcon aria-hidden="true" size="large" icon={home} />
               </IonTabButton>
-              <IonTabButton tab="new-post" href="/new-post">
+
+              {/* NEW-POST */}
+              <IonTabButton
+                tab="new-post"
+                // href="/new-post"
+                onClick={() => setShowNewPostModal(true)}
+              >
                 <IonIcon aria-hidden="true" size="large" icon={addCircle} />
               </IonTabButton>
-              {/* <IonTabButton tab="login" onClick={() => setShowModal(true)}>
-                <IonIcon aria-hidden="true" size="large" icon={person} />
-              </IonTabButton> */}
+
+              {/* PROFILE */}
               <IonTabButton
-                tab="login"
-                // TODO: burayı düzenle
-                onClick={() =>
-                  authenticated
-                    ? setshowLoginPage(false)
-                    : setshowLoginPage(true)
-                }
-                href={authenticated ? "/Profile" : "/login"}
+                tab="profile"
+                // href="/profile"
+                onClick={() => setShowLoginModal(true)}
               >
                 <IonIcon aria-hidden="true" size="large" icon={person} />
               </IonTabButton>
@@ -99,8 +92,21 @@ const App: React.FC = () => {
           </IonTabs>
         </IonReactRouter>
 
-        {/* <LoginModal isOpen={showModal} onClose={() => setShowModal(false)} /> */}
-        {showLoginPage && <Login />}
+        <Modal
+          isOpen={showLoginModal}
+          onClose={() => setShowLoginModal(false)}
+          showAlert={false}
+        >
+          <LoginCard />
+        </Modal>
+
+        <Modal
+          isOpen={showNewPostModal}
+          onClose={() => setShowNewPostModal(false)}
+          showAlert={true}
+        >
+          <NewPostCard />
+        </Modal>
       </IonContent>
     </IonApp>
   );

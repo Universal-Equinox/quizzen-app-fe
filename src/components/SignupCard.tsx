@@ -13,15 +13,14 @@ import {
   IonSelectOption,
 } from "@ionic/react";
 import React, { useState } from "react";
-import SignupModal from "./SignupModal";
 import { userData } from "../types/user";
+import { useRegisterMutation } from "../feature/auth/authApiSlice";
 
 interface SignupCardProps {
   onSignup: Function;
 }
 
-const SignupCard: React.FC<SignupCardProps> = ({ onSignup }) => {
-  const [showSignupModal, setShowSignupModal] = useState(false);
+const SignupCard: React.FC = () => {
   const [showDatetimModal, setshowDatetimModal] = useState(false);
   const [userData, setUserData] = useState<userData>({
     firstName: "",
@@ -47,14 +46,18 @@ const SignupCard: React.FC<SignupCardProps> = ({ onSignup }) => {
   const handleSubmit = () => {
     // Call signup function  with userData
     console.log(userData);
-    onSignup(userData);
+    register(userData);
+    
   };
+
+    const [register, { isLoading, error }] = useRegisterMutation();
+
 
   return (
     <>
       <IonCard>
         <IonCardHeader>
-          <IonCardTitle>Kayıt</IonCardTitle>
+          <IonCardTitle>Kayıt ol</IonCardTitle>
         </IonCardHeader>
         <IonCardContent aria-hidden="true">
           <IonGrid aria-hidden="true">
@@ -152,10 +155,7 @@ const SignupCard: React.FC<SignupCardProps> = ({ onSignup }) => {
           </IonGrid>
         </IonCardContent>
       </IonCard>
-      <SignupModal
-        isOpen={showSignupModal}
-        onClose={() => setShowSignupModal(false)}
-      />
+     
     </>
   );
 };

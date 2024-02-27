@@ -13,18 +13,16 @@ import {
   IonRow,
 } from "@ionic/react";
 import React, { useState } from "react";
-import SignupModal from "./SignupModal";
+import Modal from "./Modal";
+import SignupCard from "./SignupCard";
 
 const LoginCard: React.FC = () => {
-  const [showModal, setShowModal] = useState(false);
+  const [showSignupModal, setShowSignupModal] = useState(false);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [emailError, setEmailError] = useState("");
   const [passwordError, setPasswordError] = useState("");
 
-  const handleLogin = () => {
-
-  };
 
   const handleEmailChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setEmail(e.target.value);
@@ -93,7 +91,7 @@ const LoginCard: React.FC = () => {
 
               <IonRow>
                 henüz hesabınız yok mu?
-                <IonRouterLink onClick={() => setShowModal(true)}>
+                <IonRouterLink onClick={() => setShowSignupModal(true)}>
                   {" "}
                   kaydol
                 </IonRouterLink>
@@ -102,7 +100,15 @@ const LoginCard: React.FC = () => {
           </IonGrid>
         </IonCardContent>
       </IonCard>
-      <SignupModal isOpen={showModal} onClose={() => setShowModal(false)} />
+      {/* <SignupModal isOpen={showSignupModal} onClose={() => setshowSignupModal(false)} /> */}
+
+      <Modal
+        isOpen={showSignupModal}
+        onClose={() => setShowSignupModal(false)}
+        showAlert={true}
+      >
+        <SignupCard />
+      </Modal>
     </>
   );
 };

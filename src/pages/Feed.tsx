@@ -11,7 +11,6 @@ import {
 import React, { useEffect, useState } from "react";
 import PostCard from "../components/PostCard";
 import PostDetail from "./PostDetail";
-import QuizzenHeader from "../components/QuizzenHeader";
 import { useAppDispatch, useAppSelector } from "../app/hooks";
 import { getPosts } from "../feature/post/postSlice";
 
@@ -30,14 +29,14 @@ const Feed: React.FC = () => {
 
   return (
     <IonPage>
-      <QuizzenHeader />
       <IonContent fullscreen>
         {!loading ? (
           <IonList>
             {posts?.map((post) => (
               <IonNavLink
+                key={post.id}
                 routerDirection="forward"
-                component={() => <PostDetail post={post} />}
+                component={() => <PostDetail key={post.id} post={post} />}
               >
                 <PostCard key={post.id} post={post} />
               </IonNavLink>
