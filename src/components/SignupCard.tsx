@@ -9,6 +9,8 @@ import {
   IonGrid,
   IonInput,
   IonRow,
+  IonSelect,
+  IonSelectOption,
 } from "@ionic/react";
 import React, { useState } from "react";
 import SignupModal from "./SignupModal";
@@ -104,7 +106,16 @@ const SignupCard: React.FC<SignupCardProps> = ({ onSignup }) => {
                   fill="outline"
                   placeholder="Kullanıcı adınızı girin"
                 ></IonInput>
-                <IonInput
+                <IonSelect
+                  label="Cinsiyet"
+                  placeholder="Seç"
+                  // onIonChange={(e) => setSelectedLecture(e.detail.value)}
+                  onIonChange={(e) => handleInputChange(e, "gender")}
+                >
+                  <IonSelectOption value={"erkek"}>Matematik</IonSelectOption>
+                  <IonSelectOption value={"kadın"}>Fizik</IonSelectOption>
+                </IonSelect>
+                {/* <IonInput
                   name="gender"
                   value={userData.gender.toString()}
                   onIonChange={(e) => handleInputChange(e, "gender")}
@@ -113,8 +124,18 @@ const SignupCard: React.FC<SignupCardProps> = ({ onSignup }) => {
                   fill="outline"
                   placeholder="Cinsiyetinizi girin"
                   type="number"
-                ></IonInput>
-                <IonInput
+                ></IonInput> */}
+
+                <IonSelect
+                  label="Sınav"
+                  placeholder="Seç"
+                  // onIonChange={(e) => setSelectedLecture(e.detail.value)}
+                  onIonChange={(e) => handleInputChange(e, "examId")}
+                >
+                  <IonSelectOption value={"erkek"}>Matematik</IonSelectOption>
+                  <IonSelectOption value={"kadın"}>Fizik</IonSelectOption>
+                </IonSelect>
+                {/* <IonInput
                   name="examId"
                   value={userData.examId.toString()}
                   onIonChange={(e) => handleInputChange(e, "examId")}
@@ -122,7 +143,7 @@ const SignupCard: React.FC<SignupCardProps> = ({ onSignup }) => {
                   labelPlacement="floating"
                   fill="outline"
                   placeholder="Sınav ID'nizi girin"
-                ></IonInput>
+                ></IonInput> */}
               </IonRow>
               <IonButton expand="block" onClick={handleSubmit}>
                 Onayla

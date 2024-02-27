@@ -120,15 +120,8 @@ const NewPost: React.FC = () => {
             </IonSelect>
           </IonItem>
 
-          <IonItem>
-            <IonInput
-              label="Resim"
-              labelPlacement="floating"
-              placeholder="Enter img lo"
-            ></IonInput>
-          </IonItem>
 
-          <IonButton expand="full" color="primary">
+          <IonButton expand="block" color="primary">
             Soru Ekle
           </IonButton>
         </IonList>
