@@ -61,6 +61,8 @@ const App: React.FC = () => {
               </Route>
               <Route exact path="/post/:id" component={PostDetail} />
               <Route exact path="/profile" component={Profile} />
+              <Route exact path="/signup" component={Profile} />
+              <Route exact path="/login" component={Profile} />
             </IonRouterOutlet>
 
             <IonTabBar slot="bottom">
@@ -81,8 +83,8 @@ const App: React.FC = () => {
               {/* PROFILE */}
               <IonTabButton
                 tab="profile"
-                href="/profile"
-                // onClick={() => setShowLoginModal(true)}
+                // href="/profile"
+                onClick={() => setShowLoginModal(true)}
               >
                 <IonIcon aria-hidden="true" size="large" icon={person} />
               </IonTabButton>
