@@ -3,6 +3,7 @@ import {
   IonHeader,
   IonInfiniteScroll,
   IonInfiniteScrollContent,
+  IonItem,
   IonList,
   IonNavLink,
   IonPage,
@@ -33,13 +34,14 @@ const Feed: React.FC = () => {
         {!loading ? (
           <IonList>
             {posts?.map((post) => (
-              <IonNavLink
+              <IonItem
+                button
                 key={post.id}
                 routerDirection="forward"
-                component={() => <PostDetail key={post.id} post={post} />}
+                routerLink={`/post/${post.id}`}
               >
                 <PostCard key={post.id} post={post} />
-              </IonNavLink>
+              </IonItem>
             ))}
           </IonList>
         ) : (

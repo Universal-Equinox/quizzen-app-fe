@@ -1,4 +1,4 @@
-import { Route, useHistory } from "react-router-dom";
+import { Redirect, Route, useHistory } from "react-router-dom";
 import {
   IonApp,
   IonContent,
@@ -39,6 +39,7 @@ import Profile from "./pages/Profile";
 import Modal from "./components/Modal";
 import LoginCard from "./components/LoginCard";
 import NewPostCard from "./components/NewPostCard";
+import PostDetail from "./pages/PostDetail";
 setupIonicReact();
 
 const App: React.FC = () => {
@@ -54,15 +55,12 @@ const App: React.FC = () => {
         <IonReactRouter>
           <IonTabs>
             <IonRouterOutlet>
+              <Route exact path="/feed" component={Feed} />
               <Route exact path="/">
-                {/* IonNav sıkıntı çıkarıyor */}
-                {/* <IonNav root={() => <Feed />}></IonNav> */}
-                <Feed />
+                <Redirect to="/feed" />
               </Route>
-
-              <Route exact path="/profile">
-                <Profile />
-              </Route>
+              <Route exact path="/post/:id" component={PostDetail} />
+              <Route exact path="/profile" component={Profile} />
             </IonRouterOutlet>
 
             <IonTabBar slot="bottom">
@@ -83,8 +81,8 @@ const App: React.FC = () => {
               {/* PROFILE */}
               <IonTabButton
                 tab="profile"
-                // href="/profile"
-                onClick={() => setShowLoginModal(true)}
+                href="/profile"
+                // onClick={() => setShowLoginModal(true)}
               >
                 <IonIcon aria-hidden="true" size="large" icon={person} />
               </IonTabButton>

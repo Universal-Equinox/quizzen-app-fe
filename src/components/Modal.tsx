@@ -1,14 +1,17 @@
 import React, { useEffect, useRef, useState } from "react";
 import {
+  IonBackButton,
   IonButton,
   IonButtons,
   IonContent,
   IonHeader,
+  IonIcon,
   IonModal,
   IonTitle,
   IonToolbar,
   useIonAlert,
 } from "@ionic/react";
+import { close } from "ionicons/icons";
 
 interface ModalProps {
   title?: string | null;
@@ -47,12 +50,12 @@ const Modal: React.FC<ModalProps> = ({
     <IonModal isOpen={isOpen} onDidDismiss={onClose}>
       <IonHeader>
         <IonToolbar>
-          <IonButtons slot="end">
+          <IonButtons slot="start">
             <IonButton onClick={showAlert ? showAlertBeforeClose : onClose}>
-              Close
+              <IonIcon icon={close}></IonIcon>
             </IonButton>
           </IonButtons>
-          {title && <IonTitle slot="start">{title}</IonTitle>}
+          {title && <IonTitle>{title}</IonTitle>}
         </IonToolbar>
       </IonHeader>
       <IonContent className="ion-padding">{children}</IonContent>
