@@ -24,9 +24,13 @@ import {
   IonItemGroup,
   IonItemDivider,
   IonImg,
+  IonCardSubtitle,
+  IonIcon,
 } from "@ionic/react";
 
 import "./Profile.css";
+import { chatbubble, chatbubbleOutline, heart, heartCircleOutline, heartOutline, person, thumbsDown, thumbsUp, thumbsUpOutline } from "ionicons/icons";
+import ProfilePost from "../components/ProfilePost";
 
 const Profile: React.FC = () => {
   function Save() {
@@ -104,33 +108,8 @@ const Profile: React.FC = () => {
         </IonItemDivider>
 
         <IonList lines="inset">
-          <IonCard>
-            <IonGrid>
-              <IonRow>
-                <IonCol size="10">
-                  <IonRow>
-
-                  <IonCardTitle>
-                    This is users postThis is users post This is users post This
-                    is users post This is users post This is users post This is
-                    users post This is users post
-                  </IonCardTitle>
-                  </IonRow>
-                </IonCol>
-
-                <IonCol size="2">
-                  <IonImg
-                    className="ion-img"
-                    src={"https://avatars.githubusercontent.com/u/69048292?v=4"}
-                  ></IonImg>
-                  <IonImg
-                    className="ion-img"
-                    src={"https://avatars.githubusercontent.com/u/69048292?v=4"}
-                  ></IonImg>
-                </IonCol>
-              </IonRow>
-            </IonGrid>
-          </IonCard>
+          <ProfilePost
+          />
         </IonList>
       </IonContent>
     </IonPage>
