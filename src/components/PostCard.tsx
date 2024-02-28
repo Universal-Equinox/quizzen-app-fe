@@ -29,7 +29,7 @@ type PostCardProps = {
 
 const PostCard: React.FC<PostCardProps> = ({ post }) => {
   return (
-    <IonCard>
+    <IonCard button href={`app/post/${post.id}`}>
       <IonCardHeader>
         <IonItem>
           <IonAvatar slot="start">
@@ -40,44 +40,33 @@ const PostCard: React.FC<PostCardProps> = ({ post }) => {
           {/* <IonText>4:04 PM</IonText> */}
         </IonItem>
 
-        <IonNavLink
-          routerDirection="forward"
-          component={() => <PostDetail post={post} />}
-        >
-          {/* TODO: title özelliği kaldırılacak */}
-          <IonCardTitle>
-            {" "}
-            {post.description.length > 200 ? (
-              <>
-                {post.description.slice(0, 100)}
-                <a>
-                  <strong> ...devamını oku</strong>
-                </a>
-              </>
-            ) : (
-              post.description
-            )}
-          </IonCardTitle>
-        </IonNavLink>
+        <IonCardTitle>
+          {" "}
+          {post.description.length > 200 ? (
+            <>
+              {post.description.slice(0, 100)}
+              <a>
+                <strong> ...devamını oku</strong>
+              </a>
+            </>
+          ) : (
+            post.description
+          )}
+        </IonCardTitle>
       </IonCardHeader>
-      <IonNavLink
-        routerDirection="forward"
-        component={() => <PostDetail post={post} />}
-      >
-        <IonCardContent onClick={() => console.log("nav")}>
-          <IonGrid>
-            <IonRow>
-              {post.images &&
-                post.images.map((img) => (
-                  <IonCol key={img.url}>
-                    <IonImg className="ion-img" src={img.url}></IonImg>
-                  </IonCol>
-                ))}
-            </IonRow>
 
-          </IonGrid>
-        </IonCardContent>
-      </IonNavLink>
+      <IonCardContent onClick={() => console.log("nav")}>
+        <IonGrid>
+          <IonRow>
+            {post.images &&
+              post.images.map((img) => (
+                <IonCol key={img.url}>
+                  <IonImg className="ion-img" src={img.url}></IonImg>
+                </IonCol>
+              ))}
+          </IonRow>
+        </IonGrid>
+      </IonCardContent>
 
       <IonGrid>
         <IonRow>
