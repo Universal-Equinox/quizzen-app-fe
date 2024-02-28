@@ -1,19 +1,11 @@
-import { Redirect, Route, useHistory } from "react-router-dom";
+import { Route, useHistory } from "react-router-dom";
 import {
   IonApp,
   IonContent,
-  IonIcon,
-  IonNav,
   IonRouterOutlet,
-  IonTabBar,
-  IonTabButton,
-  IonTabs,
   setupIonicReact,
 } from "@ionic/react";
 import { IonReactRouter } from "@ionic/react-router";
-import { addCircle, home, person } from "ionicons/icons";
-
-import Feed from "./pages/Feed";
 
 /* Core CSS required for Ionic components to work properly */
 import "@ionic/react/css/core.css";
@@ -34,79 +26,26 @@ import "@ionic/react/css/display.css";
 /* Theme variables */
 import "./theme/variables.css";
 
-import { useEffect, useState } from "react";
-import Profile from "./pages/Profile";
-import Modal from "./components/Modal";
-import LoginCard from "./components/LoginCard";
-import NewPostCard from "./components/NewPostCard";
-import PostDetail from "./pages/PostDetail";
+import { useState } from "react";
+import AppContainer from "./pages/AppContainer";
+import Login from "./pages/Login";
+import Signup from "./pages/Signup";
 setupIonicReact();
 
 const App: React.FC = () => {
-  const [showLoginModal, setShowLoginModal] = useState(false);
-  const [showNewPostModal, setShowNewPostModal] = useState(false);
-  const [authenticated, setAuthenticated] = useState(false);
-
   const history = useHistory();
 
   return (
     <IonApp>
       <IonContent className="ion-padding">
         <IonReactRouter>
-          <IonTabs>
-            <IonRouterOutlet>
-              <Route exact path="/feed" component={Feed} />
-              <Route exact path="/">
-                <Redirect to="/feed" />
-              </Route>
-              <Route exact path="/post/:id" component={PostDetail} />
-              <Route exact path="/profile" component={Profile} />
-              <Route exact path="/signup" component={Profile} />
-              <Route exact path="/login" component={Profile} />
-            </IonRouterOutlet>
+          <IonRouterOutlet>
+            <Route path="/" component={AppContainer} />
 
-            <IonTabBar slot="bottom">
-              {/* FEED */}
-              <IonTabButton tab="feed" href="/">
-                <IonIcon aria-hidden="true" size="large" icon={home} />
-              </IonTabButton>
-
-              {/* NEW-POST */}
-              <IonTabButton
-                tab="new-post"
-                // href="/new-post"
-                onClick={() => setShowNewPostModal(true)}
-              >
-                <IonIcon aria-hidden="true" size="large" icon={addCircle} />
-              </IonTabButton>
-
-              {/* PROFILE */}
-              <IonTabButton
-                tab="profile"
-                // href="/profile"
-                onClick={() => setShowLoginModal(true)}
-              >
-                <IonIcon aria-hidden="true" size="large" icon={person} />
-              </IonTabButton>
-            </IonTabBar>
-          </IonTabs>
+            <Route exact path="/signup" component={Signup} />
+            <Route exact path="/login" component={Login} />
+          </IonRouterOutlet>
         </IonReactRouter>
-
-        <Modal
-          isOpen={showLoginModal}
-          onClose={() => setShowLoginModal(false)}
-          showAlert={false}
-        >
-          <LoginCard />
-        </Modal>
-
-        <Modal
-          isOpen={showNewPostModal}
-          onClose={() => setShowNewPostModal(false)}
-          showAlert={true}
-        >
-          <NewPostCard />
-        </Modal>
       </IonContent>
     </IonApp>
   );

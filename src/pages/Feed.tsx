@@ -38,7 +38,7 @@ const Feed: React.FC = () => {
                 button
                 key={post.id}
                 routerDirection="forward"
-                routerLink={`/post/${post.id}`}
+                routerLink={`/app/post/${post.id}`}
               >
                 <PostCard key={post.id} post={post} />
               </IonItem>
