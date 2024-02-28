@@ -1,17 +1,13 @@
 import React, { useState } from "react";
 import {
-  IonContent,
   IonItem,
   IonList,
-  IonPage,
   IonSelect,
   IonSelectOption,
   IonButton,
   IonTextarea,
   IonImg,
   IonCard,
-  IonCardHeader,
-  IonCardTitle,
   IonCardContent,
 } from "@ionic/react";
 

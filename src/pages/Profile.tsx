@@ -88,7 +88,9 @@ const Profile: React.FC = () => {
                   </IonRow>
                 </IonCol>
               </IonRow>
-              <IonButton expand="block">Profili düzenle</IonButton>
+              <IonButton expand="block" href="/app/settings">
+                Profili düzenle
+              </IonButton>
               <IonRow></IonRow>
             </IonGrid>
           </IonCardContent>
@@ -114,7 +116,6 @@ const Profile: React.FC = () => {
       </IonContent>
     </IonPage>
   );
-
 };
 
 export default Profile;
