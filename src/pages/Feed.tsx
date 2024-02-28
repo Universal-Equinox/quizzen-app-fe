@@ -8,6 +8,8 @@ import {
   IonNavLink,
   IonPage,
   IonSpinner,
+  IonTitle,
+  IonToolbar,
 } from "@ionic/react";
 import React, { useEffect, useState } from "react";
 import PostCard from "../components/PostCard";

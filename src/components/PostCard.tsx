@@ -27,9 +27,15 @@ type PostCardProps = {
   post: Post;
 };
 
+function LikeFun() {
+
+}
+
 const PostCard: React.FC<PostCardProps> = ({ post }) => {
   return (
-    <IonCard button href={`app/post/${post.id}`}>
+    <IonCard button href={`app/post/${post.id}`}
+      style={{ width: '100%', height: '100%' }}
+      className="ion-no-margin" >
       <IonCardHeader>
         <IonItem>
           <IonAvatar slot="start">
@@ -75,13 +81,12 @@ const PostCard: React.FC<PostCardProps> = ({ post }) => {
           <IonChip color="secondary">#{post.tags.topic}</IonChip>
         </IonRow>
         <IonRow>
-          <IonCol size="1">
-            <IonButton fill="clear" color="danger">
+          <IonCol >
+            <IonButton fill="clear" color="danger" onClick={LikeFun}>
               <IonIcon icon={heart} />
               <IonLabel>2</IonLabel>
             </IonButton>
-          </IonCol>
-          <IonCol size="1">
+
             <IonButton fill="clear">
               <IonIcon icon={chatbubbleOutline} />
               <IonLabel>2</IonLabel>
