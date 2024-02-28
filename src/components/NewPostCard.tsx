@@ -56,9 +56,9 @@ const NewPostCard: React.FC = () => {
             <IonItem>
               <IonTextarea
                 id="question-description"
-                label="açıklama"
+                label="Açıklama"
                 labelPlacement="floating"
-                placeholder="açıklama girin"
+                placeholder="Açıklama Girin"
                 fill="outline"
                 clearOnEdit={true}
                 autoGrow={true}
@@ -72,10 +72,13 @@ const NewPostCard: React.FC = () => {
             <IonItem>
               <input type="file" accept="image/*" onChange={handleFileChange} />
             </IonItem>
-
-            <IonItem>
-              <IonImg src=""></IonImg>
-            </IonItem>
+            {
+              (currentPhoto &&
+                <IonItem>
+                  <IonImg src={currentPhoto}></IonImg>
+                </IonItem>
+              )
+            }
 
             <IonItem>
               <IonSelect

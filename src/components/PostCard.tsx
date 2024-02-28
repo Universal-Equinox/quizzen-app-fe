@@ -17,7 +17,7 @@ import {
   IonRow,
   IonText,
 } from "@ionic/react";
-import { chatbubbleOutline, heart, heartOutline } from "ionicons/icons";
+import { chatbubbleOutline, heart, personCircle, heartOutline } from "ionicons/icons";
 import React from "react";
 import { Post } from "../types/post";
 import PostDetail from "../pages/PostDetail";
@@ -27,19 +27,23 @@ type PostCardProps = {
   post: Post;
 };
 
-function LikeFun() {
-
+function LikeFun(imgURL: string) {
+  console.log(imgURL);
+  {/* BURAYA POST ID İLE LİKE SAYISINI ARTTIRIP AZALTMA İŞŞEMİ YAPILACAK */ }
 }
 
 const PostCard: React.FC<PostCardProps> = ({ post }) => {
   return (
-    <IonCard button href={`app/post/${post.id}`}
+    <IonCard
       style={{ width: '100%', height: '100%' }}
       className="ion-no-margin" >
       <IonCardHeader>
         <IonItem>
           <IonAvatar slot="start">
-            <img alt="imgalt" src={post.user.profileImg} />
+            {post.user.profileImg ?
+              (<img alt="imgalt" src={post.user.profileImg} />) :
+              (<IonIcon style={{ width: '100%', height: '100%' }} icon={personCircle}></IonIcon>)
+            }
           </IonAvatar>
           <IonLabel>{post.user.userName}</IonLabel>
           <IonText>{new Date(post.createdDate).toLocaleTimeString()}</IonText>
@@ -56,7 +60,13 @@ const PostCard: React.FC<PostCardProps> = ({ post }) => {
               </a>
             </>
           ) : (
-            post.description
+            <a
+              style={{
+                color: 'black',
+                textDecoration: 'none'
+              }}
+
+              href={`app/post/${post.id}`}>{post.description}</a>
           )}
         </IonCardTitle>
       </IonCardHeader>
@@ -82,7 +92,7 @@ const PostCard: React.FC<PostCardProps> = ({ post }) => {
         </IonRow>
         <IonRow>
           <IonCol >
-            <IonButton fill="clear" color="danger" onClick={LikeFun}>
+            <IonButton fill="clear" color="danger" onClick={() => LikeFun(post.user.profileImg)}>
               <IonIcon icon={heart} />
               <IonLabel>2</IonLabel>
             </IonButton>

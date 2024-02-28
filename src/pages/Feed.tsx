@@ -37,10 +37,8 @@ const Feed: React.FC = () => {
           <IonList>
             {posts?.map((post) => (
               <IonItem
-                button
                 key={post.id}
                 routerDirection="forward"
-                routerLink={`/app/post/${post.id}`}
               >
                 <PostCard key={post.id} post={post} />
               </IonItem>
