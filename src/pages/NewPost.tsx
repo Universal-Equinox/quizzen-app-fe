@@ -11,10 +11,10 @@ import {
   useIonRouter,
 } from "@ionic/react";
 import React from "react";
-import LoginCard from "../components/LoginCard";
+import NewPostCard from "../components/NewPostCard";
 import { close } from "ionicons/icons";
 
-const Login: React.FC = () => {
+const NewPost: React.FC = () => {
   const [presentAlert] = useIonAlert();
   const router = useIonRouter();
 
@@ -42,14 +42,14 @@ const Login: React.FC = () => {
               <IonIcon icon={close}></IonIcon>
             </IonButton>
           </IonButtons>
-          <IonTitle></IonTitle>
+          <IonTitle>Yeni Soru</IonTitle>
         </IonToolbar>
       </IonHeader>
       <IonContent>
-        <LoginCard />
+        <NewPostCard />
       </IonContent>
     </IonPage>
   );
 };
 
-export default Login;
+export default NewPost;

@@ -11,6 +11,7 @@ import { Route, Redirect } from "react-router";
 import Feed from "./Feed";
 import PostDetail from "./PostDetail";
 import Profile from "./Profile";
+import NewPost from "./NewPost";
 
 const AppContainer: React.FC = () => {
   return (
@@ -22,6 +23,7 @@ const AppContainer: React.FC = () => {
         <Route path="/app/feed" component={Feed} />
         <Route path="/app/post/:id" component={PostDetail} />
         <Route path="/app/profile" component={Profile} />
+        <Route path="/app/new-post" component={NewPost} />
       </IonRouterOutlet>
 
       <IonTabBar slot="bottom">
@@ -31,7 +33,7 @@ const AppContainer: React.FC = () => {
         </IonTabButton>
 
         {/* NEW-POST */}
-        <IonTabButton tab="new-post" href="/new-post">
+        <IonTabButton tab="new-post" href="/app/new-post">
           <IonIcon aria-hidden="true" size="large" icon={addCircle} />
         </IonTabButton>
 

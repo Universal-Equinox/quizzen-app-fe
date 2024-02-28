@@ -16,8 +16,7 @@ import {
 } from "@ionic/react";
 
 const NewPostCard: React.FC = () => {
-
-  console.log("newpostcar")
+  console.log("newpostcar");
 
   const [selectedLecture, setSelectedLecture] = useState<
     LectureType | undefined
@@ -56,9 +55,6 @@ const NewPostCard: React.FC = () => {
   return (
     <>
       <IonCard>
-        <IonCardHeader>
-          <IonCardTitle>Giriş</IonCardTitle>
-        </IonCardHeader>
         <IonCardContent>
           <IonList>
             <IonItem>
