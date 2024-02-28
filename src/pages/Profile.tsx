@@ -26,6 +26,8 @@ import {
   IonImg,
 } from "@ionic/react";
 
+import "./Profile.css";
+
 const Profile: React.FC = () => {
   function Save() {
     console.log("SAVE");
@@ -104,12 +106,29 @@ const Profile: React.FC = () => {
         <IonList lines="inset">
           <IonCard>
             <IonGrid>
-              <IonCol size="6">
-                <IonCardTitle>This is users post</IonCardTitle>
-              </IonCol>
-              <IonCol size="2">
-                <img src="none" />
-              </IonCol>
+              <IonRow>
+                <IonCol size="10">
+                  <IonRow>
+
+                  <IonCardTitle>
+                    This is users postThis is users post This is users post This
+                    is users post This is users post This is users post This is
+                    users post This is users post
+                  </IonCardTitle>
+                  </IonRow>
+                </IonCol>
+
+                <IonCol size="2">
+                  <IonImg
+                    className="ion-img"
+                    src={"https://avatars.githubusercontent.com/u/69048292?v=4"}
+                  ></IonImg>
+                  <IonImg
+                    className="ion-img"
+                    src={"https://avatars.githubusercontent.com/u/69048292?v=4"}
+                  ></IonImg>
+                </IonCol>
+              </IonRow>
             </IonGrid>
           </IonCard>
         </IonList>
