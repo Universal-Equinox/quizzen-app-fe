@@ -1,35 +1,54 @@
-import React from "react";
+import React, { useState } from "react";
 import { Answer } from "../types/post";
 import {
+  IonAvatar,
   IonButton,
+  IonButtons,
   IonCard,
   IonCardContent,
   IonCardHeader,
   IonCardSubtitle,
   IonCardTitle,
   IonCol,
+  IonContent,
   IonGrid,
+  IonHeader,
   IonIcon,
   IonImg,
   IonItem,
   IonLabel,
+  IonModal,
   IonRow,
   IonText,
+  IonTitle,
+  IonToolbar,
 } from "@ionic/react";
 import { personCircle, thumbsUp, heart, send } from "ionicons/icons";
+import AnswerModal from "./AnswerModal";
+
 
 interface AnswerCardProps {
   answer: Answer;
 }
 
-const AnswerCard: React.FC<AnswerCardProps> = ({answer}) => {
+
+const AnswerCard: React.FC<AnswerCardProps> = ({ answer }) => {
+  const [isOpen, setIsOpen] = useState(false);
+
+  const closeModal = () => {
+    setIsOpen(false);
+  };
+
+
   return (
     <>
-      <IonCard>
+      <IonCard onClick={() => { setIsOpen(true) }} >
         <IonGrid>
           <IonRow>
             <IonCol size="2">
-              <IonImg src={answer.user.profileImg}></IonImg>
+              <IonAvatar>
+                <IonImg src={answer.user.profileImg}></IonImg>
+              </IonAvatar>
             </IonCol>
             <IonCol>
               <IonRow>
@@ -41,9 +60,9 @@ const AnswerCard: React.FC<AnswerCardProps> = ({answer}) => {
                 </IonCol>
               </IonRow>
               <IonRow>
-              
+
                 <IonCardContent>
-              {answer.text}
+                  {answer.text}
                 </IonCardContent>
               </IonRow>
             </IonCol>
@@ -63,6 +82,8 @@ const AnswerCard: React.FC<AnswerCardProps> = ({answer}) => {
           </IonRow>
         </IonGrid>
       </IonCard>
+
+      <AnswerModal isOpen={isOpen} onClose={closeModal} answer={answer} />
     </>
   );
 };

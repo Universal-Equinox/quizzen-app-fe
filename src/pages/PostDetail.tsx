@@ -45,7 +45,7 @@ const PostDetail: React.FC<RouteParams> = ({ match }) => {
       <IonHeader>
         <IonToolbar>
           <IonButtons slot="start">
-            <IonBackButton defaultHref="/feed"></IonBackButton>
+            <IonBackButton defaultHref="/app/feed"></IonBackButton>
           </IonButtons>
           <IonTitle>Soru</IonTitle>
         </IonToolbar>
