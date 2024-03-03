@@ -22,6 +22,7 @@ import PostDetailCard from "../components/PostDetailCard";
 import AnswerCard from "../components/AnswerCard";
 import { Post } from "../types/post";
 import { add } from "ionicons/icons";
+import Modal from "../components/Modal";
 
 interface RouteParams
   extends RouteComponentProps<{
@@ -76,6 +77,7 @@ const PostDetail: React.FC<RouteParams> = ({ match }) => {
           <IonIcon icon={add}></IonIcon>
         </IonFabButton>
       </IonFab>
+
     </IonPage>
   );
 };

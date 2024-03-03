@@ -25,12 +25,11 @@ import {
 } from "@ionic/react";
 import { personCircle, thumbsUp, heart, send } from "ionicons/icons";
 import AnswerModal from "./AnswerModal";
-
+import Modal from "./Modal";
 
 interface AnswerCardProps {
   answer: Answer;
 }
-
 
 const AnswerCard: React.FC<AnswerCardProps> = ({ answer }) => {
   const [isOpen, setIsOpen] = useState(false);
@@ -39,10 +38,13 @@ const AnswerCard: React.FC<AnswerCardProps> = ({ answer }) => {
     setIsOpen(false);
   };
 
-
   return (
     <>
-      <IonCard onClick={() => { setIsOpen(true) }} >
+      <IonCard
+        onClick={() => {
+          setIsOpen(true);
+        }}
+      >
         <IonGrid>
           <IonRow>
             <IonCol size="2">
@@ -60,9 +62,12 @@ const AnswerCard: React.FC<AnswerCardProps> = ({ answer }) => {
                 </IonCol>
               </IonRow>
               <IonRow>
-
                 <IonCardContent>
                   {answer.text}
+                  {answer.images &&
+                    answer.images.map((img) => (
+                      <IonImg className="ion-img" src={img.url}></IonImg>
+                    ))}
                 </IonCardContent>
               </IonRow>
             </IonCol>
@@ -83,7 +88,9 @@ const AnswerCard: React.FC<AnswerCardProps> = ({ answer }) => {
         </IonGrid>
       </IonCard>
 
-      <AnswerModal isOpen={isOpen} onClose={closeModal} answer={answer} />
+      <Modal isOpen={isOpen} onClose={closeModal} showAlert={false}>
+        <AnswerCard answer={answer} />
+      </Modal>
     </>
   );
 };
