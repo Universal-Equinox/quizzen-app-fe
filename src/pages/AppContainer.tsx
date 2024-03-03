@@ -18,7 +18,7 @@ const AppContainer: React.FC = () => {
   return (
     <IonTabs>
       <IonRouterOutlet>
-        <Route path="/">
+        <Route exact path="/">
           <Redirect to="/app/feed" />
         </Route>
         <Route path="/app/feed" component={Feed} />
