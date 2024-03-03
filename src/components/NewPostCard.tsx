@@ -12,7 +12,6 @@ import {
 } from "@ionic/react";
 
 const NewPostCard: React.FC = () => {
-  console.log("newpostcar");
 
   const [selectedLecture, setSelectedLecture] = useState<
     LectureType | undefined

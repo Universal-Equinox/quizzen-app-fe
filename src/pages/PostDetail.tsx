@@ -23,6 +23,7 @@ import AnswerCard from "../components/AnswerCard";
 import { Post } from "../types/post";
 import { add } from "ionicons/icons";
 import Modal from "../components/Modal";
+import NewAnswerCard from "../components/NewAnswerCard";
 
 interface RouteParams
   extends RouteComponentProps<{
@@ -35,6 +36,8 @@ const PostDetail: React.FC<RouteParams> = ({ match }) => {
     (state) => state.post
   );
   const id = match.params.id;
+
+  const [isOpenNewAnswerModal, setOpenNewAnswerModal] = useState(false);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -73,11 +76,20 @@ const PostDetail: React.FC<RouteParams> = ({ match }) => {
       </IonContent>
 
       <IonFab vertical="bottom" horizontal="end" slot="fixed">
-        <IonFabButton href="app/new-post">
+        <IonFabButton
+          onClick={() => setOpenNewAnswerModal(true)}
+        >
           <IonIcon icon={add}></IonIcon>
         </IonFabButton>
       </IonFab>
-
+      <Modal
+        title={"Cevapla:"}
+        isOpen={isOpenNewAnswerModal}
+        onClose={() => setOpenNewAnswerModal(false)}
+        showAlert={true}
+      >
+        <NewAnswerCard title={currentPost?.description}/>
+      </Modal>
     </IonPage>
   );
 };
