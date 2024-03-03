@@ -1,4 +1,5 @@
 import {
+  InputChangeEventDetail,
   IonButton,
   IonCard,
   IonCardContent,
@@ -9,22 +10,50 @@ import {
   IonInput,
   IonRouterLink,
   IonRow,
+  useIonRouter,
 } from "@ionic/react";
 import React, { useState } from "react";
+import { useAppDispatch } from "../app/hooks";
+import { useLoginMutation } from "../feature/auth/authApiSlice";
+import { setCredentials } from "../feature/auth/authSlice";
+
+type LoginCardProps = {
+  onSubmit: Function;
+};
 
 const LoginCard: React.FC = () => {
+  const dispatch = useAppDispatch();
+  const router = useIonRouter();
+  const [login] = useLoginMutation();
+
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [emailError, setEmailError] = useState("");
   const [passwordError, setPasswordError] = useState("");
 
-  const handleEmailChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setEmail(e.target.value);
+  const handleSubmit = async () => {
+    try {
+      const data = await login({
+        email: email,
+        password: password,
+      }).unwrap();
+
+      if (data.accessToken) {
+        await dispatch(setCredentials({ data: data }));
+        router.push("/app/feed");
+      }
+    } catch (error) {}
+  };
+
+  const handleEmailChange = (e: CustomEvent<InputChangeEventDetail>) => {
+    const value = (e.target as HTMLInputElement).value;
+    setEmail(value);
     setEmailError("");
   };
 
-  const handlePasswordChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setPassword(e.target.value);
+  const handlePasswordChange = (e: CustomEvent<InputChangeEventDetail>) => {
+    const value = (e.target as HTMLInputElement).value;
+    setPassword(value);
     setPasswordError("");
   };
 
@@ -57,8 +86,8 @@ const LoginCard: React.FC = () => {
                   fill="outline"
                   placeholder="mail adresinizi girin"
                   value={email}
-                  onIonChange={() => handleEmailChange}
-                  onBlur={validateEmail}
+                  onIonChange={handleEmailChange}
+                  // onBlur={validateEmail}
                 ></IonInput>
                 {emailError && <p style={{ color: "red" }}>{emailError}</p>}
               </IonRow>
@@ -70,8 +99,8 @@ const LoginCard: React.FC = () => {
                   placeholder="parolanızı girin"
                   type="password"
                   value={password}
-                  onIonChange={() => handlePasswordChange}
-                  onBlur={validatePassword}
+                  onIonChange={handlePasswordChange}
+                  // onBlur={validatePassword}
                 ></IonInput>
                 {passwordError && (
                   <p style={{ color: "red" }}>{passwordError}</p>
@@ -80,7 +109,9 @@ const LoginCard: React.FC = () => {
               <IonRow>
                 <IonRouterLink>şifremi unuttum</IonRouterLink>
               </IonRow>
-              <IonButton expand="block">Giriş</IonButton>
+              <IonButton expand="block" onClick={() => handleSubmit()}>
+                Giriş
+              </IonButton>
 
               <IonRow>
                 henüz hesabınız yok mu?

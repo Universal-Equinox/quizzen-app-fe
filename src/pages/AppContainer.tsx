@@ -13,6 +13,7 @@ import PostDetail from "./PostDetail";
 import Profile from "./Profile";
 import NewPost from "./NewPost";
 import Settings from "./Settings";
+import Login from "./Login";
 
 const AppContainer: React.FC = () => {
   return (
@@ -23,7 +24,8 @@ const AppContainer: React.FC = () => {
         </Route>
         <Route path="/app/feed" component={Feed} />
         <Route path="/app/post/:id" component={PostDetail} />
-        <Route path="/app/profile" component={Profile} />
+        {/* <Route path="/app/profile" component={Profile} /> */}
+        <Route path="/app/profile" component={Login} />
         <Route path="/app/settings" component={Settings} />
         <Route path="/app/new-post" component={NewPost} />
       </IonRouterOutlet>

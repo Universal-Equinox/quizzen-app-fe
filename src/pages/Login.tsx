@@ -15,8 +15,9 @@ import LoginCard from "../components/LoginCard";
 import { close } from "ionicons/icons";
 
 const Login: React.FC = () => {
-  const [presentAlert] = useIonAlert();
   const router = useIonRouter();
+  const [presentAlert] = useIonAlert();
+
 
   const showAlertBeforeClose = () => {
     presentAlert({
@@ -33,6 +34,8 @@ const Login: React.FC = () => {
       ],
     });
   };
+
+
   return (
     <IonPage>
       <IonHeader>
@@ -46,7 +49,7 @@ const Login: React.FC = () => {
         </IonToolbar>
       </IonHeader>
       <IonContent>
-        <LoginCard />
+        <LoginCard  />
       </IonContent>
     </IonPage>
   );

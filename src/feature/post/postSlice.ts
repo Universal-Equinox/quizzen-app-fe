@@ -1,6 +1,7 @@
 import { PayloadAction, createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
 import { Answer, Post } from "../../types/post";
+import { apiSlice } from "../../app/api/apiSlice";
 
 interface PostState {
   loading: boolean;
@@ -61,7 +62,6 @@ const postSlice = createSlice({
         state.currentPostAnswers = action.payload;
         state.loading = false;
       });
-
   },
 });
 

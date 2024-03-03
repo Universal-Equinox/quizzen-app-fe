@@ -38,7 +38,7 @@ const Feed: React.FC = () => {
     <IonPage>
       <IonHeader>
         <IonToolbar>
-          <IonText>QUIZZEN</IonText>
+          <IonText >QUIZZEN</IonText>
         </IonToolbar>
       </IonHeader>
       <IonContent fullscreen>

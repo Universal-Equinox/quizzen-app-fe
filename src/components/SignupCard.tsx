@@ -21,7 +21,6 @@ interface SignupCardProps {
 }
 
 const SignupCard: React.FC = () => {
-  const [showDatetimModal, setshowDatetimModal] = useState(false);
   const [userData, setUserData] = useState<userData>({
     firstName: "",
     lastName: "",

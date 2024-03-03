@@ -7,3 +7,8 @@ export type userData = {
   gender: number;
   examId: string;
 };
+
+export type loginCredentials = {
+  email: string;
+  password: string;
+};

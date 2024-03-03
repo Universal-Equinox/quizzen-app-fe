@@ -6,7 +6,7 @@ const baseQuery = fetchBaseQuery({
   baseUrl: "http://localhost:5174/api",
   credentials: "include",
   prepareHeaders: (headers, { getState }) => {
-    const token = (getState() as RootState).auth.token;
+    const token = (getState() as RootState).auth.accessToken;
     console.log(token);
 
     if (token) headers.set("authorization", `Bearer ${token}`);
@@ -18,7 +18,7 @@ const baseQuery = fetchBaseQuery({
 const baseQueryWithReauth = async (args: any, api: any, extraOptions: any) => {
   let result = await baseQuery(args, api, extraOptions);
 
-  if (result?.error?.status === 403) {
+  if (result?.error?.status === 401) {
     console.log("sending refresh token");
     // send refresh token to get new access token
     const refreshResult = await baseQuery("/auth/refresh", api, extraOptions);
@@ -26,15 +26,15 @@ const baseQueryWithReauth = async (args: any, api: any, extraOptions: any) => {
 
     // set credentials with new token here
 
-    // if (refreshResult?.data) {
-    //   const user = (api.getState() as RootState).auth.user;
-    //   // store the new token
-    //   api.dispatch(setCredentials({ user: user, data: { token: refreshResult.data?.token} }));
-    //   // retry the original query with new access token
-    //   result = await baseQuery(args, api, extraOptions);
-    // } else {
-    //   api.dispatch(logOut());
-    // }
+    //   if (refreshResult?.data) {
+    //     const user = (api.getState() as RootState).auth.accessToken;
+    //     // store the new token
+    //     api.dispatch(setCredentials({ data: { accessToken: refreshResult.data?.accessToken} }));
+    //     // retry the original query with new access token
+    //     result = await baseQuery(args, api, extraOptions);
+    //   } else {
+    //     api.dispatch(logOut());
+    //   }
   }
 
   return result;
@@ -42,5 +42,7 @@ const baseQueryWithReauth = async (args: any, api: any, extraOptions: any) => {
 
 export const apiSlice = createApi({
   baseQuery: baseQueryWithReauth,
-  endpoints: (builder) => ({}),
+  endpoints: (builder) => ({
+    
+  }),
 });

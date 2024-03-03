@@ -3,12 +3,10 @@ import { userData } from "../../types/user";
 
 interface AuthState {
   accessToken: string | null;
-  
 }
 
 const initialState: AuthState = {
   accessToken: null,
-  
 };
 
 const authSlice = createSlice({
@@ -17,7 +15,7 @@ const authSlice = createSlice({
   reducers: {
     setCredentials: (
       state,
-      action: PayloadAction<{ user: any; data: { accessToken: string } }>
+      action: PayloadAction<{ data: { accessToken: string } }>
     ) => {
       const { data } = action.payload;
       const { accessToken } = data;
