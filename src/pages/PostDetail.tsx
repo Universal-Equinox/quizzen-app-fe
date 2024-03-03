@@ -6,7 +6,10 @@ import {
   IonBackButton,
   IonButtons,
   IonContent,
+  IonFab,
+  IonFabButton,
   IonHeader,
+  IonIcon,
   IonList,
   IonPage,
   IonSpinner,
@@ -18,6 +21,7 @@ import {
 import PostDetailCard from "../components/PostDetailCard";
 import AnswerCard from "../components/AnswerCard";
 import { Post } from "../types/post";
+import { add } from "ionicons/icons";
 
 interface RouteParams
   extends RouteComponentProps<{
@@ -66,6 +70,12 @@ const PostDetail: React.FC<RouteParams> = ({ match }) => {
           ) : null}
         </IonList>
       </IonContent>
+
+      <IonFab vertical="bottom" horizontal="end" slot="fixed">
+        <IonFabButton href="app/new-post">
+          <IonIcon icon={add}></IonIcon>
+        </IonFabButton>
+      </IonFab>
     </IonPage>
   );
 };

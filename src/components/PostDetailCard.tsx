@@ -12,6 +12,8 @@ import {
   IonChip,
   IonCol,
   IonContent,
+  IonFab,
+  IonFabButton,
   IonGrid,
   IonIcon,
   IonImg,
@@ -23,7 +25,7 @@ import {
   IonTitle,
   IonToolbar,
 } from "@ionic/react";
-import { chatbubbleOutline, heart, heartOutline } from "ionicons/icons";
+import { add, chatbubbleOutline, heart, heartOutline } from "ionicons/icons";
 import { Post } from "../types/post";
 
 type PostCardProps = {
@@ -74,9 +76,7 @@ const PostDetailCard: React.FC<PostCardProps> = ({ post }) => {
             ))}
           </IonRow>
         </IonGrid>
-        <IonRow>
-          {post.description}
-        </IonRow>
+        <IonRow>{post.description}</IonRow>
       </IonCardContent>
 
       <IonGrid>
@@ -92,6 +92,7 @@ const PostDetailCard: React.FC<PostCardProps> = ({ post }) => {
               <IonLabel>2</IonLabel>
             </IonButton>
           </IonCol>
+
         </IonRow>
       </IonGrid>
     </IonCard>
