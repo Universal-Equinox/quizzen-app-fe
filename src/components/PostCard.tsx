@@ -35,15 +35,20 @@ function LikeFun(imgURL: string) {
 const PostCard: React.FC<PostCardProps> = ({ post }) => {
   return (
     <IonCard
-      style={{ width: '100%', height: '100%' }}
-      className="ion-no-margin" >
+      style={{ width: "100%", height: "100%" }}
+      className="ion-no-margin"
+    >
       <IonCardHeader>
         <IonItem>
           <IonAvatar slot="start">
-            {post.user.profileImg ?
-              (<img alt="imgalt" src={post.user.profileImg} />) :
-              (<IonIcon style={{ width: '100%', height: '100%' }} icon={personCircle}></IonIcon>)
-            }
+            {post.user.profileImg ? (
+              <img alt="imgalt" src={post.user.profileImg} />
+            ) : (
+              <IonIcon
+                style={{ width: "100%", height: "100%" }}
+                icon={personCircle}
+              ></IonIcon>
+            )}
           </IonAvatar>
           <IonLabel>{post.user.userName}</IonLabel>
           <IonText>{new Date(post.createdDate).toLocaleTimeString()}</IonText>
@@ -55,18 +60,19 @@ const PostCard: React.FC<PostCardProps> = ({ post }) => {
           {post.description.length > 200 ? (
             <>
               {post.description.slice(0, 100)}
-              <a>
+              <a href={`app/post/${post.id}`}>
                 <strong> ...devamını oku</strong>
               </a>
             </>
           ) : (
             <a
               style={{
-                color: 'black',
-                textDecoration: 'none'
+                textDecoration: "none",
               }}
-
-              href={`app/post/${post.id}`}>{post.description}</a>
+              href={`app/post/${post.id}`}
+            >
+              {post.description}
+            </a>
           )}
         </IonCardTitle>
       </IonCardHeader>
@@ -91,8 +97,12 @@ const PostCard: React.FC<PostCardProps> = ({ post }) => {
           <IonChip color="secondary">#{post.tags.topic}</IonChip>
         </IonRow>
         <IonRow>
-          <IonCol >
-            <IonButton fill="clear" color="danger" onClick={() => LikeFun(post.user.profileImg)}>
+          <IonCol>
+            <IonButton
+              fill="clear"
+              color="danger"
+              onClick={() => LikeFun(post.user.profileImg)}
+            >
               <IonIcon icon={heart} />
               <IonLabel>2</IonLabel>
             </IonButton>
