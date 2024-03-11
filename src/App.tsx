@@ -1,4 +1,4 @@
-import { Route, useHistory } from "react-router-dom";
+import { Route } from "react-router-dom";
 import {
   IonApp,
   IonContent,
@@ -32,8 +32,6 @@ import Signup from "./pages/Signup";
 setupIonicReact();
 
 const App: React.FC = () => {
-  const history = useHistory();
-
   return (
     <IonApp>
       <IonContent className="ion-padding">

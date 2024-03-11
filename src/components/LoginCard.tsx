@@ -39,7 +39,7 @@ const LoginCard: React.FC = () => {
       }).unwrap();
 
       if (data.accessToken) {
-        await dispatch(setCredentials({ data: data }));
+        await dispatch(setCredentials({accessToken: data.accessToken}));
         router.push("/app/feed");
       }
     } catch (error) {}

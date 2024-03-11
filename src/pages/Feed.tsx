@@ -18,8 +18,9 @@ import React, { useEffect, useState } from "react";
 import PostCard from "../components/PostCard";
 import PostDetail from "./PostDetail";
 import { useAppDispatch, useAppSelector } from "../app/hooks";
-import { getPosts } from "../feature/post/postSlice";
+// import { getPosts } from "../feature/post/postSlice";
 import { chatbubble } from "ionicons/icons";
+import { useGetPostsQuery } from "../feature/post/postApiSlice";
 
 const Feed: React.FC = () => {
   const currentDate = new Date(Date.now());
@@ -28,21 +29,28 @@ const Feed: React.FC = () => {
   })} ${currentDate.toLocaleTimeString("tr-TR", { timeStyle: "short" })}`;
 
   const dispatch = useAppDispatch();
-  const { posts, loading } = useAppSelector((state) => state.post);
+  // const { posts, loading } = useAppSelector((state) => state.post);
+  const {
+    data: posts,
+    isLoading,
+    isSuccess,
+    isError,
+    error,
+  } = useGetPostsQuery();
 
   useEffect(() => {
-    dispatch(getPosts());
+    // dispatch(getPosts());
   }, [dispatch]);
 
   return (
     <IonPage>
       <IonHeader>
         <IonToolbar>
-          <IonText >QUIZZEN</IonText>
+          <IonText>QUIZZEN</IonText>
         </IonToolbar>
       </IonHeader>
       <IonContent fullscreen>
-        {!loading ? (
+        {!isLoading ? (
           <IonList>
             {posts?.map((post) => (
               <IonItem key={post.id} routerDirection="forward">

@@ -14,6 +14,7 @@ import Profile from "./Profile";
 import NewPost from "./NewPost";
 import Settings from "./Settings";
 import Login from "./Login";
+import RequireAuth from "../components/RequireAuth";
 
 const AppContainer: React.FC = () => {
   return (
@@ -22,10 +23,14 @@ const AppContainer: React.FC = () => {
         <Route exact path="/">
           <Redirect to="/app/feed" />
         </Route>
+
+        <RequireAuth>
+          <Route path="/test" component={Profile} />
+        </RequireAuth>
+
         <Route path="/app/feed" component={Feed} />
         <Route path="/app/post/:id" component={PostDetail} />
-        {/* <Route path="/app/profile" component={Profile} /> */}
-        <Route path="/app/profile" component={Login} />
+        <Route path="/app/profile" component={Profile} />
         <Route path="/app/settings" component={Settings} />
         <Route path="/app/new-post" component={NewPost} />
       </IonRouterOutlet>

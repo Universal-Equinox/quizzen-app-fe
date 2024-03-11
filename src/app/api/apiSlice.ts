@@ -1,15 +1,19 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 import { RootState } from "../store";
 import { logOut, setCredentials } from "../../feature/auth/authSlice";
+import { CapacitorCookies } from "@capacitor/core";
 
 const baseQuery = fetchBaseQuery({
   baseUrl: "http://localhost:5174/api",
   credentials: "include",
-  prepareHeaders: (headers, { getState }) => {
-    const token = (getState() as RootState).auth.accessToken;
-    console.log(token);
-
-    if (token) headers.set("authorization", `Bearer ${token}`);
+  prepareHeaders: async (headers, { getState }) => {
+    // const token = (getState() as RootState).auth.accessToken;
+    await CapacitorCookies.getCookies().then((cookies) => {
+      if (cookies.accessToken) {
+        console.log(cookies);
+        headers.set("authorization", `Bearer ${cookies.accessToken}`);
+      }
+    });
 
     return headers;
   },
@@ -26,15 +30,17 @@ const baseQueryWithReauth = async (args: any, api: any, extraOptions: any) => {
 
     // set credentials with new token here
 
-    //   if (refreshResult?.data) {
-    //     const user = (api.getState() as RootState).auth.accessToken;
-    //     // store the new token
-    //     api.dispatch(setCredentials({ data: { accessToken: refreshResult.data?.accessToken} }));
-    //     // retry the original query with new access token
-    //     result = await baseQuery(args, api, extraOptions);
-    //   } else {
-    //     api.dispatch(logOut());
-    //   }
+    if (refreshResult.data) {
+      const token = (api.getState() as RootState).auth.accessToken;
+      // store the new token
+
+      // api.dispatch(setCredentials({accessToken:...refreshResult.data}));
+
+      // retry the original query with new access token
+      result = await baseQuery(args, api, extraOptions);
+    } else {
+      api.dispatch(logOut());
+    }
   }
 
   return result;
@@ -42,7 +48,5 @@ const baseQueryWithReauth = async (args: any, api: any, extraOptions: any) => {
 
 export const apiSlice = createApi({
   baseQuery: baseQueryWithReauth,
-  endpoints: (builder) => ({
-    
-  }),
+  endpoints: (builder) => ({}),
 });
