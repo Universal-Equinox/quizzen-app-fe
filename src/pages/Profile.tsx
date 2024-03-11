@@ -77,7 +77,7 @@ const Profile: React.FC = () => {
               <IonRow>
                 <IonCol size="4">
                   <IonAvatar>
-                    <img src="https://avatars.githubusercontent.com/u/69048292?v=4" />
+                    <img src="" />
                   </IonAvatar>
                 </IonCol>
                 <IonCol size="8">

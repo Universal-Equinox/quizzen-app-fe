@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { IonRouterOutlet } from "@ionic/react";
+import { IonRouterOutlet, useIonRouter } from "@ionic/react";
 import { CapacitorCookies } from "@capacitor/core";
 
 type RequireAuthProps = {
